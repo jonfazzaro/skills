@@ -5,9 +5,11 @@ description: Micro-commits process for committing early and often as code is wri
 
 # Micro-commits
 
+STARTER_CHARACTER = 📍
+
 Commit early and often to move forward quickly and safely. Each commit is a safety checkpoint: a known-good state you can return to. Small, focused commits make history readable, reversals cheap, and collaboration smooth.
 
-When starting, announce: "Using Micro-commits skill"
+When starting, announce: "📍 Using Micro-commits skill"
 
 ## When to Commit
 
