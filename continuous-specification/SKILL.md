@@ -1,4 +1,4 @@
----
+--
 name: continuous-specification
 description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing.
 ---
@@ -20,6 +20,25 @@ STARTER_CHARACTER = ❗️ when setting an expectation, ✅ when met (green), �
 
 + *Expectation* - a test that establishes input, state, and preconditions; executes the code being specified; and expects a certain result.
 + *Specification* - a collection or suite of expectations, usually contained in a single file with a single cohesive subject.
+
+## Vocabulary Bridge
+
+CS terminology is the language of this skill. In codebases where "testing" language is established and not being changed, interpret existing terms using this mapping:
+
+| CS Term    | Test Term                 |
+|------------|---------------------------|
+| Expectation | Test                      |
+| Specification | Test Suite                |
+| Set, unmet | Red, Fail, make it fail   |
+| Meet       | Green, Pass, make it pass |
+| Design     | Refactor                  |
+| Establish  | Arrange                   |
+| Execute    | Act                       |
+| Expect     | Assert                    |
+
+**When reading existing code:** translate test language into CS terms mentally — a failing test is a Set expectation (that's still unmet), a passing test suite is a Met Specification, etc.
+
+**When writing new code:** always use CS language regardless of what surrounds it. New expectations, new specifications, and new comments use CS vocabulary.
 
 ## Core Rules
 
