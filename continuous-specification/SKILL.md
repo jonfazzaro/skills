@@ -1,4 +1,4 @@
---
+---
 name: continuous-specification
 description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing.
 ---
