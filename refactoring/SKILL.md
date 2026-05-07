@@ -1,13 +1,15 @@
 ---
 name: refactoring
-description: Refactoring process. Invoke immediately when user or document mentions refactoring, or proactively when code gets too complex or messy.
+description: Refactoring process — designing code by improving its form. Invoke immediately when user or document mentions refactoring, or proactively when code gets too complex, messy, or when design, architecture, readability, or the form of the code comes into play.
 ---
 
-# Refactoring Production Code
+# Refactoring: Designing Your Code
 
 STARTER_CHARACTER = 🟣
 
 When starting, announce: "🟣 Using REFACTORING skill".
+
+Refactoring is how you design your code. It is not cleanup after the fact — it is an active design activity that shapes the code into a clear expression of its intent.
 
 Work autonomously as much as possible. Start with the simplest thing or file and proceed to the more complex ones.
 
@@ -18,19 +20,19 @@ Work autonomously as much as possible. Start with the simplest thing or file and
 3. Final Evaluation
 4. Summary
 
-## Test Code Policy
+## Specification Code Policy
 
-Do not change test code during refactoring, except:
+Do not change specification code during refactoring, except:
 - Renames that follow production code renames (imports, function calls)
 - Import path updates if something moved
 
-Never change test assertions, test data, or test logic.
+Never change specification assertions, specification data, or specification logic.
 
 ## 1. Prep
 
 - Determine scope: use specified files, or identify related files (imports, shared functionality), or ask user
 - Add files in scope to todo list
-- Find or create ./test.sh, verify all tests pass
+- Find or create ./test.sh, verify all specs pass
 - Remove comments from files in scope (commit per file)
 
 ## 2. Main Refactoring
@@ -52,9 +54,9 @@ Prefer self-explanatory, readable code over comments.
 ### Process
 
 For each refactor:
-1. Ensure all tests pass
+1. Ensure all specs pass
 2. Choose and perform the simplest possible refactoring (one at a time)
-3. Ensure all tests pass after the change
+3. Ensure all specs pass after the change
 4. Commit each successful refactor with the message format: "- r <refactoring>" (the message must include the "- r" prefix)
    Prefer small granular commits. If applying the same refactoring pattern to multiple locations, change one location at a time and commit each separately.
 5. Provide a status update after each refactor
