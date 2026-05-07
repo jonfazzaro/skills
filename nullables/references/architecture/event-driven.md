@@ -42,7 +42,7 @@ The "cop" directs traffic to handlers. Each handler follows Logic Sandwich.
 
 ## Behavior Simulation
 
-To test event-driven code, add `simulateX()` methods to your Nullables:
+To specify event-driven code, add `simulateX()` methods to your Nullables:
 
 ```javascript
 class Network {
@@ -79,9 +79,9 @@ class Network {
 }
 ```
 
-Key insight: `simulateX()` methods call the same handlers as real events. This ensures tests exercise the real code path.
+Key insight: `simulateX()` methods call the same handlers as real events. This ensures specifications exercise the real code path.
 
-## Testing with Behavior Simulation
+## Specifying with Behavior Simulation
 
 ```javascript
 it("broadcasts messages to other clients", async () => {
@@ -108,4 +108,4 @@ it("broadcasts messages to other clients", async () => {
 
 - **God Classes** - Keep each handler focused on one responsibility
 - **Complex handlers** - Extract logic to Logic layer if handlers grow
-- **Untested event paths** - Simulate all event types in tests
+- **Unspecified event paths** - Simulate all event types in specifications

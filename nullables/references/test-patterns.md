@@ -1,19 +1,19 @@
-# Test Patterns for Nullables
+# Specification Patterns for Nullables
 
-Effective tests with Nullables follow specific patterns that differ from mock-based testing.
+Effective specifications with Nullables follow specific patterns that differ from mock-based specifying.
 
 ## Contents
 
 - [Core Structure: Arrange-Act-Assert](#core-structure-arrange-act-assert)
 - [Helper Functions (Signature Shielding)](#helper-functions-signature-shielding)
 - [State-Based vs Interaction-Based](#state-based-vs-interaction-based)
-- [Sociable Tests](#sociable-tests)
-- [Overlapping Tests](#overlapping-tests)
-- [Testing Error Paths](#testing-error-paths)
-- [Testing Sequences](#testing-sequences)
-- [Testing Time-Dependent Code](#testing-time-dependent-code)
-- [Testing Event-Driven Code](#testing-event-driven-code)
-- [Narrow Integration Tests](#narrow-integration-tests)
+- [Sociable Specifications](#sociable-specifications)
+- [Overlapping Specifications](#overlapping-specifications)
+- [Specifying Error Paths](#specifying-error-paths)
+- [Specifying Sequences](#specifying-sequences)
+- [Specifying Time-Dependent Code](#specifying-time-dependent-code)
+- [Specifying Event-Driven Code](#specifying-event-driven-code)
+- [Narrow Integration Specifications](#narrow-integration-specifications)
 - [Assertion Patterns](#assertion-patterns)
 
 ## Core Structure: Arrange-Act-Assert
@@ -40,7 +40,7 @@ it("processes payment successfully", async () => {
 
 ## Helper Functions (Signature Shielding)
 
-Encapsulate test setup to protect against signature changes:
+Encapsulate specification setup to protect against signature changes:
 
 ```javascript
 describe("PaymentService", () => {
@@ -78,11 +78,11 @@ describe("PaymentService", () => {
 });
 ```
 
-When `PaymentService` constructor changes, only the helper updates.
+When `PaymentService` constructor changes, only the helper updates. Specifications remain unchanged.
 
 ## State-Based vs Interaction-Based
 
-Nullables enable state-based testing. Verify outcomes, not method calls:
+Nullables enable state-based specifying. Verify outcomes, not method calls:
 
 ```javascript
 // AVOID: Interaction-based (mock-style)
@@ -103,7 +103,7 @@ it("logs processing step", () => {
 });
 ```
 
-## Testing Error Paths
+## Specifying Error Paths
 
 Configure Nullables to return errors:
 
@@ -128,9 +128,9 @@ it("handles network failure", async () => {
 });
 ```
 
-## Testing Sequences
+## Specifying Sequences
 
-Use response arrays to test multi-step flows:
+Use response arrays to specify multi-step flows:
 
 ```javascript
 it("retries failed requests", async () => {
@@ -161,12 +161,12 @@ it("gives up after max retries", async () => {
 });
 ```
 
-## Sociable Tests
+## Sociable Specifications
 
-Tests naturally become "sociable" - they exercise real code through the dependency chain:
+Specifications naturally become "sociable" - they exercise real code through the dependency chain:
 
 ```javascript
-// Controller test runs real logic, real validation
+// Controller specification runs real logic, real validation
 it("creates user with validated data", async () => {
   const { response, dbWrites } = await createUser({
     body: { email: "user@test.com", name: "Alice" }
@@ -193,17 +193,17 @@ async function createUser({ body }) {
 }
 ```
 
-## Overlapping Tests
+## Overlapping Specifications
 
-With sociable tests, test coverage naturally overlaps. A bug in a shared dependency causes multiple test failures. This is a feature, not a bug:
+With sociable specifications, coverage naturally overlaps. A bug in a shared dependency causes multiple specification failures. This is a feature, not a bug:
 
-- **Mocks hide bugs** - When each test mocks its dependencies, a bug in real code might not surface until production.
-- **Overlapping tests surface bugs** - Multiple failures pinpoint the problem quickly: "All UserController tests failed → check UserController."
-- **Refactoring is safe** - Change implementation, run tests, see what breaks.
+- **Mocks hide bugs** - When each specification mocks its dependencies, a bug in real code might not surface until production.
+- **Overlapping specifications surface bugs** - Multiple failures pinpoint the problem quickly: "All UserController specifications failed → check UserController."
+- **Refactoring is safe** - Change implementation, run specifications, see what breaks.
 
-If a change breaks many tests, check the shared code they exercise. The failing tests reveal your dependency graph.
+If a change breaks many specifications, check the shared code they exercise. The failing specifications reveal your dependency graph.
 
-## Testing Time-Dependent Code
+## Specifying Time-Dependent Code
 
 Use a nulled Clock:
 
@@ -259,7 +259,7 @@ class ControllableTime {
 }
 ```
 
-## Testing Event-Driven Code
+## Specifying Event-Driven Code
 
 Use behavior simulation for events:
 
@@ -283,16 +283,16 @@ it("broadcasts messages to other clients", () => {
 });
 ```
 
-## Narrow Integration Tests
+## Narrow Integration Specifications
 
-Sociable unit tests with Nullables provide most of your coverage without slow, flaky end-to-end tests. But you still need confidence that your wrappers actually work with real infrastructure.
+Sociable specifications with Nullables provide most of your coverage without slow, flaky end-to-end specifications. But you still need confidence that your wrappers actually work with real infrastructure.
 
-**Avoid broad integration tests** that exercise entire flows through real systems—they're slow, flaky, and duplicate coverage you already have from sociable tests. Instead, write narrow integration tests that focus on one wrapper at a time.
+**Avoid broad integration specifications** that exercise entire flows through real systems—they're slow, flaky, and duplicate coverage you already have from sociable specifications. Instead, write narrow integration specifications that focus on one wrapper at a time.
 
-Test wrappers against real systems in isolation:
+Specify wrappers against real systems in isolation:
 
 ```javascript
-// Separate file: _http_client_integration_test.js
+// Separate file: _http_client_integration_spec.js
 describe("HttpClient integration", () => {
   let server;
 
@@ -314,7 +314,7 @@ describe("HttpClient integration", () => {
 });
 ```
 
-These integration tests verify the wrapper works with real infrastructure. Most tests use Nullables; integration tests provide confidence the real path works.
+These integration specifications verify the wrapper works with real infrastructure. Most specifications use Nullables; integration specifications provide confidence the real path works.
 
 ## Assertion Patterns
 
@@ -331,8 +331,8 @@ const { timestamp, ...rest } = output.data[0];
 assert.deepEqual(rest, { message: "expected" });
 ```
 
-**Note:** `expect.any(Number)` is Jest-specific. For portable tests, extract and ignore dynamic fields as shown above, or use a library-specific matcher.
+**Note:** `expect.any(Number)` is Jest-specific. For portable specifications, extract and ignore dynamic fields as shown above, or use a library-specific matcher.
 
 ---
 
-For the complete pattern language, see [Testing Without Mocks](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks) by James Shore (long!).
+For the complete pattern language, see [Testing Without Mocks](https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks) by James Shore (long!) — the source material for these patterns.

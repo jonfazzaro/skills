@@ -16,18 +16,18 @@ Convert incrementally from top down. Make direct dependencies Nullable while lea
 ```
 Before:
   App → Service → Repository → Database
-  (all mocked in tests)
+  (all mocked in specifications)
 
 Step 1: Make Service Nullable
-  App (tests use Service.createNull())
+  App (specifications use Service.createNull())
     → Service → Repository → Database
 
 Step 2: Make Repository Nullable
-  App → Service (tests use Repository.createNull())
+  App → Service (specifications use Repository.createNull())
          → Repository → Database
 
 Step 3: Make Database wrapper Nullable
-  App → Service → Repository (tests use Database.createNull())
+  App → Service → Repository (specifications use Database.createNull())
                     → Database wrapper
 ```
 
@@ -36,7 +36,7 @@ Step 3: Make Database wrapper Nullable
 **Process:**
 1. Pick the highest-level class with mocked dependencies
 2. Create `createNull()` factory for that class
-3. Update its tests to use `createNull()` instead of mocks
+3. Update its specifications to use `createNull()` instead of mocks
 4. Repeat for the next level down
 
 ## Climb the Ladder
@@ -137,13 +137,13 @@ class ThrowawayDatabaseStub {
 
 **Rules for Throwaway Stubs:**
 - Mark clearly as temporary (comment, naming)
-- Keep minimal - only what current tests need
+- Keep minimal - only what current specifications need
 - Delete as soon as the real dependency becomes Nullable
 - Don't let them grow into permanent fixtures
 
 ## Migration Checklist
 
-- [ ] Identify all mock usages in test files (`grep -r "mock\|jest.fn\|sinon"`)
+- [ ] Identify all mock usages in specification files (`grep -r "mock\|jest.fn\|sinon"`)
 - [ ] Map dependency tree
 - [ ] Choose strategy: Descend (large) or Climb (small)
 - [ ] For each class:
@@ -151,7 +151,7 @@ class ThrowawayDatabaseStub {
   - [ ] Add `createNull()` factory method
   - [ ] Add Output Tracking where needed
   - [ ] Add Configurable Responses where needed
-  - [ ] Update tests to use Nullables
+  - [ ] Update specifications to use Nullables
   - [ ] Remove mock imports
 - [ ] Delete throwaway stubs when no longer needed
 - [ ] Remove mock library from dependencies

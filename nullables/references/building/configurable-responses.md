@@ -1,6 +1,6 @@
 # Configurable Responses
 
-Configurable Responses control what your Nullable returns. They let tests specify external system behavior at the caller's abstraction level.
+Configurable Responses control what your Nullable returns. They let specifications define external system behavior at the caller's abstraction level.
 
 ## Contents
 
@@ -116,7 +116,7 @@ class DieRoller {
 }
 ```
 
-Test:
+Specify:
 
 ```javascript
 it("returns configured rolls", () => {
@@ -218,7 +218,7 @@ class StubbedHttp {
 }
 ```
 
-Test timeout handling:
+Specify timeout handling:
 
 ```javascript
 it("cancels request on timeout", async () => {

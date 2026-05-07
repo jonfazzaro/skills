@@ -11,11 +11,11 @@ Embedded Stubs are minimal implementations of third-party code that live inside 
 - [Error Simulation](#error-simulation)
 - [Thin Wrapper Pattern (Static Languages)](#thin-wrapper-pattern-static-languages)
 - [Complex Stubs: File System Example](#complex-stubs-file-system-example)
-- [Testing the Stub Itself](#testing-the-stub-itself)
+- [Specifying the Stub Itself](#specifying-the-stub-itself)
 
 ## Placement
 
-Embedded stubs belong in the same file as the wrapper, not in test files:
+Embedded stubs belong in the same file as the wrapper, not in specification files:
 
 ```javascript
 // file: http_client.js
@@ -48,7 +48,7 @@ class StubbedHttp {
 
 1. **Maintenance**: When the wrapper changes, the stub is right there to update
 2. **Minimal surface**: Only implement what the wrapper uses
-3. **No test pollution**: Production code, not test code
+3. **No specification pollution**: Production code, not specification code
 4. **Discoverability**: Reading the wrapper shows the full picture
 
 ## Implement Only What You Use
@@ -279,9 +279,9 @@ class StubbedFs {
 }
 ```
 
-## Testing the Stub Itself
+## Specifying the Stub Itself
 
-Test your embedded stub to ensure it behaves correctly:
+Specify your embedded stub to ensure it behaves correctly:
 
 ```javascript
 describe("StubbedFs", () => {
@@ -310,7 +310,7 @@ describe("StubbedFs", () => {
 
 Embedded Stubs should stay minimal. If your stub is becoming complex:
 
-1. **Test-drive through the wrapper's public interface** - Don't test the stub directly unless it has non-trivial logic
+1. **Specify through the wrapper's public interface** - Don't specify the stub directly unless it has non-trivial logic
 2. **Implement only what's called** - If your wrapper uses 3 methods, the stub needs only those 3
-3. **Add complexity incrementally** - Start simple, add features as tests require them
+3. **Add complexity incrementally** - Start simple, add features as specifications require them
 4. **Consider if you're stubbing too much** - A very complex stub might mean your wrapper is doing too much

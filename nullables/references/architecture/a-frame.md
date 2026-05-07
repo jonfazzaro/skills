@@ -10,11 +10,11 @@ When Logic imports Infrastructure directly:
 Logic → Infrastructure → Database/HTTP/FileSystem
 ```
 
-You face a painful choice when testing:
-- **Hit real infrastructure** — tests become slow (network, disk) and flaky (timeouts, service outages)
-- **Mock the infrastructure** — tests become brittle (coupled to implementation, break on refactoring)
+You face a painful choice when specifying:
+- **Hit real infrastructure** — specifications become slow (network, disk) and flaky (timeouts, service outages)
+- **Mock the infrastructure** — specifications become brittle (coupled to implementation, break on refactoring)
 
-Either way, your feedback loop suffers. Slow tests mean you run them less. Brittle tests mean you trust them less.
+Either way, your feedback loop suffers. Slow specifications mean you run them less. Brittle specifications mean you trust them less.
 
 ## A-Frame: Peers, Not Layers
 
@@ -23,7 +23,7 @@ A-Frame makes Logic and Infrastructure **peers**:
 ```
         Application (coordinates)
             ↓              ↓
-Logic (pure, tested)    Infrastructure (Nullables)
+Logic (pure, specified)    Infrastructure (Nullables)
 
 Both use Value Objects (shared types)
 ```
@@ -60,7 +60,7 @@ class OrderLogic {
 }
 ```
 
-When Logic depends on Infrastructure, you can't test it without either hitting real systems or mocking. A-Frame eliminates this by keeping Logic pure.
+When Logic depends on Infrastructure, you can't specify it without either hitting real systems or mocking. A-Frame eliminates this by keeping Logic pure.
 
 ## Value Objects
 

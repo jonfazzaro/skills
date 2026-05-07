@@ -6,10 +6,10 @@ Output Tracking observes what your code writes to external systems without perfo
 
 - [The OutputListener Utility](#the-outputlistener-utility)
 - [Using OutputListener in Wrappers](#using-outputlistener-in-wrappers)
-- [Usage in Tests](#usage-in-tests)
+- [Usage in Specifications](#usage-in-specifications)
 - [Track at the Right Level](#track-at-the-right-level)
 - [Multiple Trackers](#multiple-trackers)
-- [Testing Sequences](#testing-sequences)
+- [Specifying Sequences](#specifying-sequences)
 - [Combining with Configurable Responses](#combining-with-configurable-responses)
 
 ## The OutputListener Utility
@@ -98,7 +98,7 @@ class Logger {
 }
 ```
 
-## Usage in Tests
+## Usage in Specifications
 
 ```javascript
 it("logs successful operations", async () => {
@@ -178,7 +178,7 @@ class HttpClient {
 }
 ```
 
-## Testing Sequences
+## Specifying Sequences
 
 Output tracking naturally captures sequences:
 

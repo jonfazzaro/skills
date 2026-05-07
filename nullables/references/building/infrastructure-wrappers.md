@@ -43,7 +43,7 @@ static createNull() {
   return new Clock(Date);  // This defeats the purpose - still uses real Date
 }
 
-// BAD: No factory method - forces tests to know about StubbedDate
+// BAD: No factory method - forces specifications to know about StubbedDate
 const clock = new Clock(new StubbedDate("2020-01-01"));  // Leaks internals to callers
 ```
 
@@ -172,7 +172,7 @@ class StubbedFs {
 }
 ```
 
-### 4. Test Your Wrapper
+### 4. Specify Your Wrapper
 
 ```javascript
 describe("FileSystem", () => {
@@ -351,7 +351,7 @@ class App {
 }
 ```
 
-### Testing at Any Level
+### Specifying at Any Level
 
 ```javascript
 it("sends confirmation email when order processed", async () => {
@@ -366,7 +366,7 @@ it("sends confirmation email when order processed", async () => {
 });
 ```
 
-The test creates `App` but verifies email behavior. No mocks, no stubs at the App level—just composition.
+The expectation creates `App` but verifies email behavior. No mocks, no stubs at the App level—just composition.
 
 ### Single-Level Composition
 
@@ -467,8 +467,8 @@ class App {
 Not everything needs a wrapper. Create wrappers for:
 - External I/O (network, filesystem, databases)
 - Non-deterministic operations (clocks, random numbers, UUIDs)
-- Expensive operations you want to avoid in tests
+- Expensive operations you want to avoid in specifications
 
 Skip wrappers when:
-- **The dependency is already testable** - Pure functions, immutable data structures
+- **The dependency is already specifiable** - Pure functions, immutable data structures
 - **You're wrapping a wrapper** - Don't wrap your own abstractions; make them Nullable directly

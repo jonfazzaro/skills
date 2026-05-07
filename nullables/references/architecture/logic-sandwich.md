@@ -8,7 +8,7 @@ PROCESS → Transform with Logic (pure functions)
 WRITE   → Send results to Infrastructure
 ```
 
-The "meat" (logic) is sandwiched between "bread" (I/O). This keeps logic pure and testable.
+The "meat" (logic) is sandwiched between "bread" (I/O). This keeps logic pure and specifiable.
 
 ## Example
 
@@ -37,7 +37,7 @@ class OrderProcessor {
 }
 ```
 
-## Testing
+## Specifying
 
 Null the infrastructure, verify the writes:
 
@@ -59,7 +59,7 @@ it("sends confirmation email for valid order", async () => {
 });
 ```
 
-Notice: the test creates Nullables for all infrastructure, runs real application code, and verifies outcomes via Output Tracking.
+Notice: the expectation creates Nullables for all infrastructure, runs real application code, and verifies outcomes via Output Tracking.
 
 ## Multiple Reads or Writes
 
@@ -95,7 +95,7 @@ async processOrder(orderId) {
   await this._db.save(result);
 }
 
-// logic layer - pure, easily tested
+// logic layer - pure, easily specified
 class OrderLogic {
   static process(order) {
     const validated = this.validate(order);
@@ -106,4 +106,4 @@ class OrderLogic {
 }
 ```
 
-Logic layer tests don't need Nullables at all - just call the pure functions.
+Logic layer specifications don't need Nullables at all - just call the pure functions.
