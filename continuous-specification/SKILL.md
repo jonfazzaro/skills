@@ -39,11 +39,15 @@ CS terminology is the language of this skill. In codebases where "testing" langu
 
 1. ALL code changes follow Continuous Specification — feature requests mid-stream are NOT exceptions. Set the expectation first, then code.
 2. Set only one expectation at a time — focus on the simplest, lowest-hanging fruit behavior.
+    + Only write enough of an expectation to be unmet--do not write more than is needed to fail given the current state of the code.
+    + Be a stickler on this one! Expecting too much at once can lead to gaps in the specification.
 3. Predict failures — state what we expect to fail before running the spec.
 4. Two-step red phase:
    - First: make it fail to compile (class/method doesn't exist)
    - Second: make it compile but fail the expectation (return wrong value)
-5. Minimal code to meet the expectation — just enough to make it green. If no expectation requires it, don't write it.
+5. Minimal code to meet the expectation — just enough to make it green. 
+   + If no expectation requires it, don't write it.
+   + Be a stickler on this one! Try to "thwart" the expectation by hard-coding or otherwise implementing *only* what's being expected, not the stated intent of the expectation. This should then cause the expectation to be written better, to be more explicit, and cover more cases.
 6. No comments in production code — keep it clean unless specifically asked.
 7. Run all specifications every time — not just the one you're working on.
 8. Design at the first opportunity when all expectations are met.
