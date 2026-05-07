@@ -49,8 +49,10 @@ CS terminology is the language of this skill. In codebases where "testing" langu
    + If no expectation requires it, don't write it.
    + Be a stickler on this one! Try to "thwart" the expectation by hard-coding or otherwise implementing *only* what's being expected, not the stated intent of the expectation. This should then cause the expectation to be written better, to be more explicit, and cover more cases.
 6. No comments in production code — keep it clean unless specifically asked.
-7. Run all specifications every time — not just the one you're working on.
+7. Run all expectations in the specification every time — not just the one(s) you're working on.
 8. Design at the first opportunity when all expectations are met.
+    + Do *not* design/refactor while there are any unmet expectations.
+    + Do *not* wait until the end of the implementation to design/refactor. Look for a chance every time expectations are met.
 9. Specify behavior, not implementation — check responses or state, not method calls.
 10. Push back when something seems wrong or unclear.
 
