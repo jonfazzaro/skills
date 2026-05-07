@@ -16,11 +16,6 @@ MODE (user specifies, default: auto)
 
 STARTER_CHARACTER = ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
 
-## Basic Terminology
-
-+ *Expectation* - a test that establishes input, state, and preconditions; executes the code being specified; and expects a certain result.
-+ *Specification* - a collection or suite of expectations, usually contained in a single file with a single cohesive subject.
-
 ## Vocabulary Bridge
 
 CS terminology is the language of this skill. In codebases where "testing" language is established and not being changed, interpret existing terms using this mapping:
@@ -28,7 +23,7 @@ CS terminology is the language of this skill. In codebases where "testing" langu
 | CS Term    | Test Term                 |
 |------------|---------------------------|
 | Expectation | Test                      |
-| Specification | Test Suite                |
+| Specification | Test Suite, file          |
 | Set, unmet | Red, Fail, make it fail   |
 | Meet       | Green, Pass, make it pass |
 | Design     | Refactor                  |
