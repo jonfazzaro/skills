@@ -32,7 +32,7 @@ Never change specification assertions, specification data, or specification logi
 
 - Determine scope: use specified files, or identify related files (imports, shared functionality), or ask user
 - Add files in scope to todo list
-- Find or create ./test.sh, verify all specs pass
+- Find or create ./spec.sh, verify all specs pass
 - Remove comments from files in scope (commit per file)
 
 ## 2. Main Refactoring
