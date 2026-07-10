@@ -7,14 +7,14 @@ description: Continuous Specification process for writing code by defining speci
 
 Continuous Specification is a code design technique. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is specifiable by design, not retrofitted. We are not trying to rush towards feature completion — it's important that the code is correct and well-designed. Be thorough and only add what specifications demand.
 
-When starting, announce: "Using Continuous Specification skill in mode: [auto|human]"
+When starting, announce: "🏓 Using Continuous Specification skill in mode: [auto|human]"
 
 MODE (user specifies, default: auto)
 
-- auto: Run the full ping-pong pairing process using two subagents (see Ping-Pong Mode section). DO NOT ask for confirmation or approval.
-- human: wait for confirmation at key points
+- auto: Run the full ping-pong pairing cycle using two subagents. DO NOT ask for confirmation or approval.
+- human: A single agent follows the Implementation Phase steps directly. Wait for confirmation at key points.
 
-STARTER_CHARACTER = ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
+STARTER_CHARACTER = 🏓 (orchestrator), ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
 
 ## Vocabulary Bridge
 
@@ -90,35 +90,84 @@ Separate these concerns. Keep Code Specifications focused on a single component'
 
 ## Implementation Phase
 
+In auto mode, the cycle runs as adversarial ping-pong: two subagents (A and B) alternate through set/meet/design turns, with the orchestrator spawning and refereeing between each handoff.
+
+```
+A: set an unmet expectation
+B: meet it
+A: design
+B: set an unmet expectation
+A: meet it
+B: design
+...
+```
+
+The 3-step asymmetry rotates roles — no one sets, meets, and designs in the same position twice in a row.
+
+In human mode, a single agent follows the same steps in sequence.
+
+### Person A — Set an Unmet Expectation
+
+Spawn a subagent as Person A (auto), or proceed directly (human). Instructions:
+
 1. Replace the next `[EXPECT]` comment directly with a failing expectation. No intermediate markers.
-2. Structure expectations in Establish-Execute-Expect with empty lines separating each section (do not add section labels as comments).
+2. Structure in Establish-Execute-Expect with empty lines separating each section (no section label comments).
 3. Name expectations descriptively in natural language. Avoid underscores unless the target language requires them.
 4. Use a `describe`/`it` nested structure:
    - `Given` blocks describe preconditions or data state.
    - `When` blocks describe the event or user action.
-   - Nest `Given` blocks inside `When` blocks to express the same action under different conditions.
+   - Nest `Given` inside `When` to express the same action under different conditions.
    - Start expectation names with `it should` (or language equivalent).
-   - Expectation names should read as complete sentences when combined with their describe blocks.
-5. Think through the expected value BEFORE writing the expectation. Trace the logic step by step.
+   - Names should read as complete sentences when combined with their describe blocks.
+5. Think through the expected value BEFORE writing. Trace the logic step by step.
 6. Predict what will fail.
-7. Run specifications, see compilation error (if the expectation targets something new).
+7. Run specifications — see compilation error (if targeting something new).
 8. Add minimal code to compile.
 9. Predict the expectation failure.
-10. Run specifications, see expectation failure.
-11. Add minimal code to meet the expectation.
-12. Predict whether all expectations will be met and why. Run specifications, see green.
-13. Simplify. For each line/expression just added, ask: "Does a failing expectation require this?"
-    - If no expectation requires it, delete it — or if it's necessary, add an `[EXPECT]` comment for it.
-    - Run specifications after each simplification.
-    - Repeat until every line is justified by an expectation.
-14. Design.
-    - Reflect on the domain: is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
-    - Introduce domain concepts (new abstractions) only — add NO new behavior. All expectations must still be met, and no new code should be added that doesn't have an expectation.
-    - Think about improvements to expressiveness, clarity, simplicity.
-    - Say `🌀 Starting design stage` and list planned changes.
-    - Implement one at a time, run specifications after each.
-    - When done (or if none needed), say "🌀 Design complete".
-15. Go to step 1 for the next `[EXPECT]` comment. Repeat until all planned expectations are met.
+10. Run specifications — see expectation failure.
+
+If the expectation is already met by existing code, keep it as a valid specification and skip to the next `[EXPECT]`.
+
+### Orchestrator — Referee (auto only)
+
+Read Person A's output. Verify the expectation is actually unmet. Flag over-specification (testing too much at once). Adjust the next prompt if needed.
+
+### Person B — Meet the Expectation
+
+Spawn a subagent as Person B (auto), or continue directly (human). Instructions:
+
+1. Add the MINIMUM code to meet the expectation — no more. Try to "thwart" it by hard-coding or implementing only what's being expected, not the stated intent. This surfaces gaps.
+2. Predict whether all expectations will be met and why.
+3. Run specifications — see green.
+4. Simplify. For each line/expression just added, ask: "Does a failing expectation require this?"
+   - If no expectation requires it, delete it — or if it's necessary, add an `[EXPECT]` comment for it.
+   - Run specifications after each simplification.
+   - Repeat until every line is justified by an expectation.
+
+### Orchestrator — Referee and Commit (auto only)
+
+Read Person B's output. Verify all expectations are green. Flag over-implementation (unexercised branches or guards added beyond what the expectation required). Commit: `feat: <expectation description>`. Adjust the next prompt if needed.
+
+### Person A — Design
+
+Spawn a subagent as Person A (auto), or continue directly (human). Instructions:
+
+1. Strip all code not required by any current expectation. Stripping unexercised guards and branches exposes how much smaller each step should be.
+2. Reflect on the domain: is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
+3. Introduce domain concepts (new abstractions) only — add NO new behavior. All expectations must still be met.
+4. Say `🌀 Starting design stage` and list planned changes.
+5. Implement one change at a time, run specifications after each.
+6. Say `🌀 Design complete` when done (or if none needed).
+
+### Orchestrator — Commit and Continue (auto only)
+
+Read Person A's output. Flag dead code left behind. Commit: `design: <what changed>`. Never commit with unmet expectations.
+
+Swap roles. Return to Person A — Set an Unmet Expectation. Continue until all planned expectations are met.
+
+### Know When to Stop
+
+Stop when no remaining `[EXPECT]` comments drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. In auto mode, summarize the commit history as the record of what was specified.
 
 ## Specification Design Rules
 
@@ -138,60 +187,3 @@ Separate these concerns. Keep Code Specifications focused on a single component'
 3. Is anything still hardcoded in the code that shouldn't be? Fix it, analyze gaps, and go back to earlier stages if needed.
 4. Analyze code expressiveness and quality. If there's anything to improve, go to design phase.
 
-## Ping-Pong Mode
-
-STARTER_CHARACTER = 🏓
-
-Two subagents take turns setting unmet expectations, meeting them, and designing — with the orchestrator acting as referee between each turn. The adversarial posture is the point: the design step strips the implementation to only what the expectation required, exposing over-engineering and forcing smaller steps.
-
-When starting, announce: "🏓 Using Ping-Pong Pairing"
-
-### The Cycle
-
-```
-A: set an unmet expectation
-B: meet it
-A: design
-B: set an unmet expectation
-A: meet it
-B: design
-...
-```
-
-The 3-step asymmetry means roles rotate — no one writes, passes, and designs in the same position twice in a row.
-
-### Setup
-
-Read the codebase to understand what is being built. Identify the implementation stub, the existing test structure and style, and any domain rules. Confirm domain rules with the user before starting.
-
-### Person A sets an unmet expectation
-
-Spawn a subagent as Person A with the current implementation, a summary of what has been specified so far, and the instruction to set the SMALLEST possible unmet expectation.
-
-If the expectation is met trivially, keep it as a valid specification, skip the implementation turn, and continue to the next expectation candidate.
-
-### Person B meets the expectation
-
-Spawn a subagent as Person B with the unmet expectation, the current implementation, and the instruction to write the MINIMUM code to meet the expectation — no more.
-
-### Person A designs
-
-Spawn a subagent as Person A with the met expectations and the instruction to: (1) strip all code not required to meet the current expectations, then (2) clean the design of what remains.
-
-The adversarial move: stripping unexercised guards and branches highlights how much smaller each step should be.
-
-### Referee between every handoff
-
-Before passing to the next subagent, read the output and verify expectations are met or unmet as expected. Flag over-implementation (B added unexercised branches) or under-design (A left dead code). Adjust the next prompt if course correction is needed.
-
-### Commit
-
-After each fully-met state: `feat:` commit. After each design pass: `design:` commit. Never commit with unmet expectations.
-
-### Rotate and repeat
-
-Swap roles and continue the cycle until the behavior is fully specified.
-
-### Know when to stop
-
-Stop when no remaining todos drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. Summarize the commit history as the record of what was specified.
