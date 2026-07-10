@@ -1,18 +1,13 @@
 ---
 name: continuous-specification
-description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing. Runs as adversarial ping-pong pairing by default with two subagents alternating set/meet/design turns.
+description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing. Runs as adversarial ping-pong pairing with two subagents alternating set/meet/design turns.
 ---
 
 # Continuous Specification
 
 Continuous Specification is a code design technique. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is specifiable by design, not retrofitted. We are not trying to rush towards feature completion — it's important that the code is correct and well-designed. Be thorough and only add what specifications demand.
 
-When starting, announce: "🏓 Using Continuous Specification skill in mode: [auto|human]"
-
-MODE (user specifies, default: auto)
-
-- auto: Run the full ping-pong pairing cycle using two subagents. DO NOT ask for confirmation or approval.
-- human: A single agent follows the Implementation Phase steps directly. Wait for confirmation at key points.
+When starting, announce: "🏓 Using Continuous Specification skill"
 
 STARTER_CHARACTER = 🏓 (orchestrator), ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
 
@@ -45,7 +40,7 @@ CS terminology is the language of this skill. In codebases where "testing" langu
 4. Two-step red phase:
    - First: make it fail to compile (class/method doesn't exist)
    - Second: make it compile but fail the expectation (return wrong value)
-5. Minimal code to meet the expectation — just enough to make it green. 
+5. Minimal code to meet the expectation — just enough to make it green.
    + If no expectation requires it, don't write it.
    + Be a stickler on this one! Try to "thwart" the expectation by hard-coding or otherwise implementing *only* what's being expected, not the stated intent of the expectation. This should then cause the expectation to be written better, to be more explicit, and cover more cases.
 6. No comments in production code — keep it clean unless specifically asked.
@@ -78,7 +73,7 @@ Separate these concerns. Keep Code Specifications focused on a single component'
     [EXPECT] Division by zero is not allowed
     ...
     ```
-    
+
 3. Check completeness — walk through [ZOMBIES](references/zombies.md) explicitly:
    - Zero/empty cases covered?
    - One item cases covered?
@@ -86,11 +81,10 @@ Separate these concerns. Keep Code Specifications focused on a single component'
    - Boundary transitions covered?
    - Interface clarity verified?
    - Exceptions/errors covered?
-4. If MODE is human, wait for confirmation after planning the specification.
 
 ## Implementation Phase
 
-In auto mode, the cycle runs as adversarial ping-pong: two subagents (A and B) alternate through set/meet/design turns, with the orchestrator spawning and refereeing between each handoff.
+The cycle runs as adversarial ping-pong: two subagents (A and B) alternate through set/meet/design turns, with the orchestrator spawning and refereeing between each handoff.
 
 ```
 A: set an unmet expectation
@@ -104,11 +98,9 @@ B: design
 
 The 3-step asymmetry rotates roles — no one sets, meets, and designs in the same position twice in a row.
 
-In human mode, a single agent follows the same steps in sequence.
+### Set an Unmet Expectation
 
-### Person A — Set an Unmet Expectation
-
-Spawn a subagent as Person A (auto), or proceed directly (human). Instructions:
+Spawn a subagent for this turn. Instructions:
 
 1. Replace the next `[EXPECT]` comment directly with a failing expectation. No intermediate markers.
 2. Structure in Establish-Execute-Expect with empty lines separating each section (no section label comments).
@@ -126,15 +118,11 @@ Spawn a subagent as Person A (auto), or proceed directly (human). Instructions:
 9. Predict the expectation failure.
 10. Run specifications — see expectation failure.
 
-If the expectation is already met by existing code, keep it as a valid specification and skip to the next `[EXPECT]`.
+If existing code already meets the expectation, keep it as a valid specification and skip to the next `[EXPECT]`.
 
-### Orchestrator — Referee (auto only)
+### Meet the Expectation
 
-Read Person A's output. Verify the expectation is actually unmet. Flag over-specification (testing too much at once). Adjust the next prompt if needed.
-
-### Person B — Meet the Expectation
-
-Spawn a subagent as Person B (auto), or continue directly (human). Instructions:
+Spawn a subagent for this turn. Instructions:
 
 1. Add the MINIMUM code to meet the expectation — no more. Try to "thwart" it by hard-coding or implementing only what's being expected, not the stated intent. This surfaces gaps.
 2. Predict whether all expectations will be met and why.
@@ -144,13 +132,9 @@ Spawn a subagent as Person B (auto), or continue directly (human). Instructions:
    - Run specifications after each simplification.
    - Repeat until every line is justified by an expectation.
 
-### Orchestrator — Referee and Commit (auto only)
+### Design
 
-Read Person B's output. Verify all expectations are green. Flag over-implementation (unexercised branches or guards added beyond what the expectation required). Commit: `feat: <expectation description>`. Adjust the next prompt if needed.
-
-### Person A — Design
-
-Spawn a subagent as Person A (auto), or continue directly (human). Instructions:
+Spawn a subagent for this turn. Instructions:
 
 1. Strip all code not required by any current expectation. Stripping unexercised guards and branches exposes how much smaller each step should be.
 2. Reflect on the domain: is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
@@ -159,15 +143,19 @@ Spawn a subagent as Person A (auto), or continue directly (human). Instructions:
 5. Implement one change at a time, run specifications after each.
 6. Say `🌀 Design complete` when done (or if none needed).
 
-### Orchestrator — Commit and Continue (auto only)
-
-Read Person A's output. Flag dead code left behind. Commit: `design: <what changed>`. Never commit with unmet expectations.
-
-Swap roles. Return to Person A — Set an Unmet Expectation. Continue until all planned expectations are met.
-
 ### Know When to Stop
 
-Stop when no remaining `[EXPECT]` comments drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. In auto mode, summarize the commit history as the record of what was specified.
+Stop when no remaining `[EXPECT]` comments drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. Summarize the commit history as the record of what was specified.
+
+## Orchestrator
+
+After each turn, read the subagent's output and referee before handing off to the next turn.
+
+**After Set:** Verify the expectation is actually unmet. Flag over-specification (testing too much at once). Adjust the next prompt if needed.
+
+**After Meet:** Verify all expectations are green. Flag over-implementation (unexercised branches or guards added beyond what the expectation required). Commit: `feat: <expectation description>`. Adjust the next prompt if needed.
+
+**After Design:** Flag dead code left behind. Commit: `design: <what changed>`. Never commit with unmet expectations. Swap roles. Return to Set.
 
 ## Specification Design Rules
 
@@ -186,4 +174,3 @@ Stop when no remaining `[EXPECT]` comments drive new unmet expectations, the nex
 2. If there are any gaps, start the process for the missing expectations from the beginning — starting from `[EXPECT]` comments then following the process until done.
 3. Is anything still hardcoded in the code that shouldn't be? Fix it, analyze gaps, and go back to earlier stages if needed.
 4. Analyze code expressiveness and quality. If there's anything to improve, go to design phase.
-
