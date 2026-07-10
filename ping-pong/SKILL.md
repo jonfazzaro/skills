@@ -1,5 +1,5 @@
 ---
-name: ping-pong-pairing
+name: ping-pong
 description: Adversarial ping-pong pair programming using two subagents. Use when doing Continuous Specification (aka TDD). Related to continuous-specification, refactoring, and micro-commits skills.
 ---
 
