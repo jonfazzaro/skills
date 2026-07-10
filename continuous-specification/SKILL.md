@@ -1,19 +1,18 @@
 ---
 name: continuous-specification
-description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing. Supports ping-pong mode for adversarial pairing with two subagents alternating set/meet/design turns.
+description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing. Runs as adversarial ping-pong pairing by default with two subagents alternating set/meet/design turns.
 ---
 
 # Continuous Specification
 
 Continuous Specification is a code design technique. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is specifiable by design, not retrofitted. We are not trying to rush towards feature completion — it's important that the code is correct and well-designed. Be thorough and only add what specifications demand.
 
-When starting, announce: "Using Continuous Specification skill in mode: [auto|human|ping-pong]"
+When starting, announce: "Using Continuous Specification skill in mode: [auto|human]"
 
 MODE (user specifies, default: auto)
 
-- auto: DO NOT ask for confirmation or approval. Proceed through all steps without stopping.
+- auto: Run the full ping-pong pairing process using two subagents (see Ping-Pong Mode section). DO NOT ask for confirmation or approval.
 - human: wait for confirmation at key points
-- ping-pong: run the adversarial ping-pong pairing process using two subagents (see Ping-Pong Mode section)
 
 STARTER_CHARACTER = ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
 

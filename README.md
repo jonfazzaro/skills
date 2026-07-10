@@ -4,7 +4,7 @@ A collection of skills to help agents make code cheaper and safer to change.
 
 | Skill | Description |
 |-------|-------------|
-| [continuous-specification](continuous-specification/SKILL.md) | TDD framed around specification — design emerges from usage, not speculation. Set one expectation at a time, meet it with minimal code, then design. Includes ping-pong mode: adversarial pairing with two subagents alternating set/meet/design turns. |
+| [continuous-specification](continuous-specification/SKILL.md) | TDD framed around specification — design emerges from usage, not speculation. Runs as adversarial ping-pong pairing by default: two subagents alternate setting expectations, meeting them, and designing. |
 | [nullables](nullables/SKILL.md) | Specify code with external I/O (HTTP, files, databases, clocks) without mocks. Infrastructure wrappers with `create()`/`createNull()` factory methods enable fast, state-based, sociable specifications. |
 | [refactoring](refactoring/SKILL.md) | Active design process — prep, refactor incrementally (one change at a time, specs green after each), evaluate, summarize. |
 | [micro-commits](micro-commits/SKILL.md) | Commit at every green checkpoint. Small, focused commits make history readable, reversals cheap, and progress safe. |
