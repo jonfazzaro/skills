@@ -1,25 +1,25 @@
 ---
 name: ping-pong-pairing
-description: Adversarial ping-pong pair programming using two subagents. Use when doing TDD with two agents taking turns writing failing tests, making them pass, and refactoring. Related to continuous-specification and micro-commits skills.
+description: Adversarial ping-pong pair programming using two subagents. Use when doing Continuous Specification (aka TDD). Related to continuous-specification, refactoring, and micro-commits skills.
 ---
 
 # Adversarial Ping-Pong Pairing with Subagents
 
 STARTER_CHARACTER = 🏓
 
-Two subagents take turns writing failing tests, making them pass, and refactoring — with the orchestrator acting as referee between each turn. The adversarial posture is the point: the refactoring step strips the implementation to only what the test required, exposing over-engineering and forcing smaller steps.
+Two subagents take turns setting unmet expectations, meeting them, and designing — with the orchestrator acting as referee between each turn. The adversarial posture is the point: the design step strips the implementation to only what the expectation required, exposing over-engineering and forcing smaller steps.
 
 When starting, announce: "🏓 Using Ping-Pong Pairing skill"
 
 ## The Cycle
 
 ```
-A: write failing test
-B: make it pass
-A: refactor
-B: write failing test
-A: make it pass
-B: refactor
+A: set an unmet expectation
+B: meet it
+A: design
+B: set an unmet expectation
+A: meet it
+B: design
 ...
 ```
 
@@ -33,31 +33,31 @@ Read the codebase to understand what is being built. Identify the implementation
 
 ### 2. Install skills
 
-Ensure micro-commits and continuous-specification skills are available.
+Ensure continuous-specification, refactoring, and micro-commits skills are available.
 
-### 3. Person A writes a failing test
+### 3. Person A sets an unmet expectation
 
-Spawn a subagent as Person A with the current implementation, a summary of what has been proven so far, and the instruction to write the SMALLEST possible failing test.
+Spawn a subagent as Person A with the current implementation, a summary of what has been specified so far, and the instruction to set the SMALLEST possible unmet expectation.
 
-If the test passes trivially, keep it as a valid specification, skip the implementation turn, and continue to the next failing test candidate.
+If the expectation is met trivially, keep it as a valid specification, skip the implementation turn, and continue to the next expectation candidate.
 
-### 4. Person B makes it pass
+### 4. Person B meets the expectation
 
-Spawn a subagent as Person B with the failing test, the current implementation, and the instruction to write the MINIMUM code to make the test pass — no more.
+Spawn a subagent as Person B with the unmet expectation, the current implementation, and the instruction to write the MINIMUM code to meet the expectation — no more.
 
-### 5. Person A refactors
+### 5. Person A designs
 
-Spawn a subagent as Person A with the passing tests and the instruction to: (1) strip all code not required to pass the current tests, then (2) clean the design of what remains.
+Spawn a subagent as Person A with the met expectations and the instruction to: (1) strip all code not required to meet the current expectations, then (2) clean the design of what remains.
 
 The adversarial move: stripping unexercised guards and branches highlights how much smaller each step should be.
 
 ### 6. Referee between every handoff
 
-Before passing to the next subagent, read the output and verify tests pass or fail as expected. Flag over-implementation (B added unexercised branches) or under-refactoring (A left dead code). Adjust the next prompt if course correction is needed.
+Before passing to the next subagent, read the output and verify expectations are met or unmet as expected. Flag over-implementation (B added unexercised branches) or under-design (A left dead code). Adjust the next prompt if course correction is needed.
 
 ### 7. Commit
 
-After each green state: `feat:` commit. After each design refactor: `design:` commit. Never commit red code.
+After each fully-met state: `feat:` commit. After each design pass: `design:` commit. Never commit with unmet expectations.
 
 ### 8. Rotate and repeat
 
@@ -65,4 +65,4 @@ Swap roles and continue the cycle until the behavior is fully specified.
 
 ### 9. Know when to stop
 
-Stop when no remaining todos drive new failing tests, the next test requires a scope decision, or the user signals done. Summarize the commit history as the record of what was specified.
+Stop when no remaining todos drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. Summarize the commit history as the record of what was specified.
