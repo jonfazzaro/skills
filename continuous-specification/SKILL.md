@@ -1,18 +1,19 @@
 ---
 name: continuous-specification
-description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing.
+description: Continuous Specification process for writing code by defining specifications before implementing. Use whenever adding any new code, unless the user explicitly asks to skip specs or the code is exploratory/spike. Also known as TDD, but framed around specification rather than testing. Supports ping-pong mode for adversarial pairing with two subagents alternating set/meet/design turns.
 ---
 
 # Continuous Specification
 
 Continuous Specification is a code design technique. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is specifiable by design, not retrofitted. We are not trying to rush towards feature completion — it's important that the code is correct and well-designed. Be thorough and only add what specifications demand.
 
-When starting, announce: "Using Continuous Specification skill in mode: [auto|human]"
+When starting, announce: "Using Continuous Specification skill in mode: [auto|human|ping-pong]"
 
-MODE (user specifies, default: auto)  
+MODE (user specifies, default: auto)
 
 - auto: DO NOT ask for confirmation or approval. Proceed through all steps without stopping.
 - human: wait for confirmation at key points
+- ping-pong: run the adversarial ping-pong pairing process using two subagents (see Ping-Pong Mode section)
 
 STARTER_CHARACTER = ❗️ when setting an expectation, ✅ when met (green), 🌀 when designing, always followed by a space
 
@@ -137,3 +138,61 @@ Separate these concerns. Keep Code Specifications focused on a single component'
 2. If there are any gaps, start the process for the missing expectations from the beginning — starting from `[EXPECT]` comments then following the process until done.
 3. Is anything still hardcoded in the code that shouldn't be? Fix it, analyze gaps, and go back to earlier stages if needed.
 4. Analyze code expressiveness and quality. If there's anything to improve, go to design phase.
+
+## Ping-Pong Mode
+
+STARTER_CHARACTER = 🏓
+
+Two subagents take turns setting unmet expectations, meeting them, and designing — with the orchestrator acting as referee between each turn. The adversarial posture is the point: the design step strips the implementation to only what the expectation required, exposing over-engineering and forcing smaller steps.
+
+When starting, announce: "🏓 Using Ping-Pong Pairing"
+
+### The Cycle
+
+```
+A: set an unmet expectation
+B: meet it
+A: design
+B: set an unmet expectation
+A: meet it
+B: design
+...
+```
+
+The 3-step asymmetry means roles rotate — no one writes, passes, and designs in the same position twice in a row.
+
+### Setup
+
+Read the codebase to understand what is being built. Identify the implementation stub, the existing test structure and style, and any domain rules. Confirm domain rules with the user before starting.
+
+### Person A sets an unmet expectation
+
+Spawn a subagent as Person A with the current implementation, a summary of what has been specified so far, and the instruction to set the SMALLEST possible unmet expectation.
+
+If the expectation is met trivially, keep it as a valid specification, skip the implementation turn, and continue to the next expectation candidate.
+
+### Person B meets the expectation
+
+Spawn a subagent as Person B with the unmet expectation, the current implementation, and the instruction to write the MINIMUM code to meet the expectation — no more.
+
+### Person A designs
+
+Spawn a subagent as Person A with the met expectations and the instruction to: (1) strip all code not required to meet the current expectations, then (2) clean the design of what remains.
+
+The adversarial move: stripping unexercised guards and branches highlights how much smaller each step should be.
+
+### Referee between every handoff
+
+Before passing to the next subagent, read the output and verify expectations are met or unmet as expected. Flag over-implementation (B added unexercised branches) or under-design (A left dead code). Adjust the next prompt if course correction is needed.
+
+### Commit
+
+After each fully-met state: `feat:` commit. After each design pass: `design:` commit. Never commit with unmet expectations.
+
+### Rotate and repeat
+
+Swap roles and continue the cycle until the behavior is fully specified.
+
+### Know when to stop
+
+Stop when no remaining todos drive new unmet expectations, the next expectation requires a scope decision, or the user signals done. Summarize the commit history as the record of what was specified.
