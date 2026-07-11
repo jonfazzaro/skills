@@ -131,12 +131,13 @@ Spawn a subagent for this turn. Instructions:
    - If no expectation requires it, delete it — or if it's necessary, add an `[EXPECT]` comment for it.
    - Run specifications after each simplification.
    - Repeat until every line is justified by an expectation.
+   - **Treat each alternative in a regex, union type, or switch/conditional as its own piece of behavior.** For example, if only `.` is being tested, write `[^.]+\.` — not `[^.?!]+[.?!]`. Each alternative must be driven by its own failing expectation.
 
 ### Design
 
 Spawn a subagent for this turn. Instructions:
 
-1. Strip all code not required by any current expectation. Stripping unexercised guards and branches exposes how much smaller each step should be.
+1. Strip all code not required by any current expectation. Stripping unexercised guards and branches exposes how much smaller each step should be. This includes alternatives inside regex character classes, union types, and switch/conditional arms.
 2. Reflect on the domain: is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
 3. Introduce domain concepts (new abstractions) only — add NO new behavior. All expectations must still be met.
 4. Say `🌀 Starting design stage` and list planned changes.
@@ -153,7 +154,7 @@ After each turn, read the subagent's output and referee before handing off to th
 
 **After Set:** Verify the expectation is actually unmet. Flag over-specification (testing too much at once). Adjust the next prompt if needed.
 
-**After Meet:** Verify all expectations are green. Flag over-implementation (unexercised branches or guards added beyond what the expectation required). Commit: `feat: <expectation description>`. Adjust the next prompt if needed.
+**After Meet:** Verify all expectations are green. Flag over-implementation (unexercised branches or guards added beyond what the expectation required) — including regex alternatives, union type arms, and switch cases that no current expectation exercises. Commit: `feat: <expectation description>`. Adjust the next prompt if needed.
 
 **After Design:** Flag dead code left behind. Commit: `design: <what changed>`. Never commit with unmet expectations. Swap roles. Return to Set.
 
