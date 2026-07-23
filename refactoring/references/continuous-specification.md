@@ -8,7 +8,7 @@ The refactoring process depends on a passing spec suite at every step. If no spe
 
 - Specs must pass before any refactoring begins (Prep stage)
 - Run specs after every individual change
-- Never commit a refactoring that breaks a spec
+- Commit every refactoring separately after the relevant specifications pass
 - The design stage in CS is refactoring: improve form while keeping all specs green
 
 ## Skill

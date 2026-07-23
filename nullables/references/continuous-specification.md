@@ -6,7 +6,7 @@ Nullables are the preferred isolation strategy within CS — they replace mockin
 
 ## Relationship to Nullables
 
-- CS's Specification Design Rules prohibit mocking frameworks; Nullables are the alternative
+- CS prefers observable state over interaction-based mocks; Nullables are its default seam for external I/O unless repository architecture or the user requires another behavioral technique
 - Infrastructure wrappers are built incrementally as specifications demand them — don't create wrappers speculatively
 - The `nullables` skill is loaded from within CS when specifications involve infrastructure dependencies
 

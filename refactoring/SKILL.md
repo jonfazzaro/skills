@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: Refactoring process — designing code by improving its form. Invoke immediately when user or document mentions refactoring, or proactively when code gets too complex, messy, or when design, architecture, readability, or the form of the code comes into play.
+description: Refactoring process for improving code form without changing behavior. Use when the user asks to refactor or when an in-scope readability or design problem obstructs requested work. Keep changes bounded to the requested or touched scope, preserve executable behavior, and commit each green design change.
 ---
 
 # Refactoring: Designing Your Code
@@ -33,7 +33,7 @@ Never change specification assertions, specification data, or specification logi
 - Determine scope: use specified files, or identify related files (imports, shared functionality), or ask user
 - Add files in scope to todo list
 - Find or create ./spec.sh, verify all specs pass
-- Remove comments from files in scope (commit per file)
+- Review comments in scope; preserve required documentation, safety notes, licenses, and useful rationale, and remove only comments made redundant by clearer code
 
 ## 2. Main Refactoring
 
@@ -57,23 +57,23 @@ For each refactor:
 1. Ensure all specs pass
 2. Choose and perform the simplest possible refactoring (one at a time)
 3. Ensure all specs pass after the change
-4. Commit each successful refactor with the message format: "- r <refactoring>" (the message must include the "- r" prefix)
+4. Commit each successful refactor as `design: <refactoring>` unless repository conventions require another format.
    Prefer small granular commits. If applying the same refactoring pattern to multiple locations, change one location at a time and commit each separately.
 5. Provide a status update after each refactor
 
 ## 3. Final Evaluation
 
-When you see no more obvious refactoring opportunities, say "🔍 Entering final evaluation."
+When you see no more in-scope refactoring opportunities, say "🔍 Entering final evaluation."
 
-Shift focus: you've been implementing. Now become a critic. Your job is to find problems, not produce code.
+Shift focus from implementation to one bounded critical pass over the requested and touched scope.
 
 Re-read Code Style guidelines. Look at each file in scope. Consider blind spots - what improvements haven't we even considered that would make the code better, easier, more maintainable?
 
-For each file, find ONE thing that could be better. If you find something:
+For each file, look for one concrete in-scope issue introduced, exposed, or obstructing the requested work. If you find one:
 1. Fix it using the same refactoring process (test, change, test, commit)
 2. Look again; fixing one thing often reveals the next
 
-Repeat until you find nothing more to improve.
+Stop after the bounded pass finds no concrete in-scope issue. Report unrelated opportunities instead of expanding the task.
 
 ## 4. Summary
 

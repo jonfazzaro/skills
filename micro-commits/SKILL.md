@@ -38,8 +38,9 @@ Keep messages under 72 characters. No periods. No past tense ("added") — use p
 
 1. Verify the code is in a green / working state before committing.
 2. Stage only the files relevant to this commit (`git add -p` for partial staging when needed).
-3. Write the commit message using the format above.
-4. Commit.
+3. Inspect the staged diff and remove unrelated user work.
+4. Write the commit message using the format above.
+5. Commit.
 
 Never commit broken or red code. If something is partially done, stash or leave it unstaged.
 
@@ -47,8 +48,8 @@ Never commit broken or red code. If something is partially done, stash or leave 
 
 In the CS cycle, commit at these moments:
 
-- After **step 12** (all expectations met, green): commit the new expectation feat: minimal code together.
-- After **each design change** in step 14 (design stage): one commit per change, using `- r` prefix.
+- After each expectation reaches its green checkpoint: commit the expectation and minimal production behavior together.
+- After each design change: one commit per change using the `design:` prefix.
 - Do NOT commit during the red phase (unmet expectation). Wait for green.
 
 Example sequence:

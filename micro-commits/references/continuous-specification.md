@@ -2,13 +2,15 @@
 
 Continuous Specification is a code design technique where each behavior is specified before it is implemented. Code is written in a tight cycle: set an expectation (red), meet it with minimal code (green), then design/refactor while staying green.
 
-Micro-commits integrate naturally with this cycle — every green run is a commit opportunity, and every design step is its own commit.
+Micro-commits are part of this cycle: commit each expectation after semantic minimization and the broader relevant suite are green, then commit each validated design step separately.
 
 ## Integration points
 
-- Commit after **step 12** (all expectations met, green): `feat: <expectation description>`
-- Commit after **each design change** in step 14: `design: <what changed>`
+- Commit each new behavior at its green checkpoint: `feat: <expectation description>`
+- Commit each corrected behavior at its green checkpoint: `fix: <behavior corrected>`
+- Commit each design change separately: `design: <what changed>`
 - Never commit during the red phase (unmet expectation)
+- Stage only owned changes and inspect the staged diff before committing
 
 ## Skill
 
