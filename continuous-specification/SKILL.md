@@ -48,9 +48,20 @@ Follow repository-native language, framework, naming, and file-layout convention
 10. Keep unrelated user changes out of test mutations, restoration, staging, and commits.
 11. Push back when requirements are contradictory, unsafe, or too ambiguous to specify.
 
-## Plan the Specification
+## Specification Planning
 
-Translate the request into a finite ordered ledger of single-line `[EXPECT]` items. Each requested behavior must map to at least one item or be explicitly recorded as out of scope, deferred by the user, or blocked.
+Before changing production behavior, write the complete ordered expectation list as single-line comments in the target specification file. Prefix every item exactly with `[EXPECT] `:
+
+```text
+[EXPECT] Zero plus a number equals that number
+[EXPECT] Add two positive numbers
+[EXPECT] Add two negative numbers
+[EXPECT] Adding opposite numbers returns zero
+```
+
+If the target specification file is not yet known, draft the list in the working plan, then move it into the specification file before entering Set. Do not leave the only copy in transient commentary.
+
+Keep each item to one independently meaningful behavior and order the list from the simplest case to more complex cases. Each requested behavior must map to at least one `[EXPECT]` item or be explicitly recorded as out of scope, deferred by the user, or blocked.
 
 Walk through [ZOMBIES](references/zombies.md):
 
@@ -67,6 +78,8 @@ Identify two commands before implementation:
 - The broader relevant suite that detects regressions in the affected behavior.
 
 Use the narrow command during the short loop. Run the broader relevant suite before a green checkpoint and at task completion. If either command is unavailable, investigate before editing; if it remains unavailable, disclose the verification gap and do not claim executable proof or create a green-checkpoint commit.
+
+Treat the remaining `[EXPECT]` comments as the completeness ledger. During Set, replace only the next comment with its executable expectation. Do not delete, reorder, or silently rewrite the remaining items to make the task appear complete.
 
 ## Keep an Evidence Ledger
 
