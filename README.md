@@ -8,6 +8,7 @@ A collection of skills to help agents make code cheaper and safer to change.
 | [nullables](nullables/SKILL.md) | Specify code with external I/O (HTTP, files, databases, clocks) without mocks. Infrastructure wrappers with `create()`/`createNull()` factory methods enable fast, state-based, sociable specifications. |
 | [refactoring](refactoring/SKILL.md) | Bounded design process — improve one in-scope behavior-preserving step at a time, keep specifications green, and commit each change. |
 | [micro-commits](micro-commits/SKILL.md) | Commit at every green checkpoint. Small, focused commits make history readable, reversals cheap, and progress safe. |
+| [ensemble-review](ensemble-review/SKILL.md) | Run three isolated, concurrent reviews with distinct models and synthesize their findings into a prioritized revision plan. |
 
 ## Installation
 
