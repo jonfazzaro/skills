@@ -31,18 +31,27 @@ Require all of the following before delegating:
 
 - Three isolated subagents.
 - Concurrent execution.
-- Three distinct available models that can be assigned explicitly.
+- Three distinct available model selections.
 
-If any requirement is unavailable, stop and name the missing capability. Do not
-silently reduce the reviewer count, reuse a model, run sequentially, or create
-partial report files.
+Select the strongest three distinct models exposed by the current session. Use
+explicit model overrides when they are available. If a preferred model is not
+available, choose the next strongest available distinct model. If fewer than
+three explicit overrides are available, use the inherited primary model as the
+next fallback when it is distinct from the selected overrides. Omit the model
+override for that reviewer so it inherits the primary model.
+
+Stop and name the missing capability only when these fallbacks still cannot
+produce three distinct model selections. Do not silently reduce the reviewer
+count, reuse a model, run sequentially, or create partial report files.
 
 ## Delegate Independent Reviews
 
-Start all three reviewers concurrently. Assign a distinct model and report path
-to each reviewer. Give them the same target and shared review contract, followed
-by one complementary lens. Do not expose one reviewer's prompt, work, or report
-to another reviewer before all three finish.
+Start all three reviewers concurrently. Assign a distinct selected model and
+report path to each reviewer. Set explicit model overrides where supported and
+use inheritance only for the primary-model fallback. Give them the same target
+and shared review contract, followed by one complementary lens. Do not expose
+one reviewer's prompt, work, or report to another reviewer before all three
+finish.
 
 Use this shared contract:
 
