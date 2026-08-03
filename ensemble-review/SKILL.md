@@ -1,12 +1,13 @@
 ---
 name: ensemble-review
-description: Runs three isolated, concurrent reviews with distinct available models, then synthesizes their findings into a prioritized revision plan. Use when the user explicitly asks for an ensemble review, independent multi-model review, or cross-check of a document, proposal, specification, plan, or runbook for internal consistency, narrative flow, and end-to-end coherence.
+description: Runs up to three isolated, concurrent reviews, then synthesizes their findings into a prioritized revision plan. Use when the user explicitly asks for an ensemble review, independent multi-model review, or cross-check of a document, proposal, specification, plan, or runbook for internal consistency, narrative flow, and end-to-end coherence.
 ---
 
 # Ensemble Review
 
-Review one target through three independent lenses, preserve each review as a
-separate artifact, and reconcile them into one actionable synthesis.
+Review one target independently with up to three available reviewers, have each
+reviewer apply all three lenses, preserve each review as a separate artifact,
+and reconcile them into one actionable synthesis.
 
 ## Prepare
 
@@ -21,52 +22,42 @@ separate artifact, and reconcile them into one actionable synthesis.
    - `REVIEW-1-CONSISTENCY.md`
    - `REVIEW-2-FLOW.md`
    - `REVIEW-3-COHERENCE.md`
-6. Check whether any report path already exists. Do not overwrite an existing
-   report without the user's explicit approval; ask for replacement approval or
-   an alternate output location.
+   The names identify report slots and do not assign lenses.
+6. Overwrite any active report path that already exists by default. Use an
+   alternate output location only when the user requests one.
 
 ## Check Capabilities
 
-Require all of the following before delegating:
+Use up to three isolated subagents concurrently. If fewer than three reviewing
+agents are configured, use every available reviewing agent. Stop only when no
+reviewing agent is available.
 
-- Three isolated subagents.
-- Concurrent execution.
-- Three distinct available model selections.
-
-Select the strongest three distinct models exposed by the current session. Use
-explicit model overrides when they are available. If a preferred model is not
-available, choose the next strongest available distinct model. If fewer than
-three explicit overrides are available, use the inherited primary model as the
-next fallback when it is distinct from the selected overrides. Omit the model
-override for that reviewer so it inherits the primary model.
-
-Stop and name the missing capability only when these fallbacks still cannot
-produce three distinct model selections. Do not silently reduce the reviewer
-count, reuse a model, run sequentially, or create partial report files.
+Select the strongest distinct models exposed by the current session when
+possible. Use explicit model overrides when they are available. Use the
+inherited primary model as a fallback by omitting the model override. Model
+diversity is preferred but must not reduce the number of available reviewers.
 
 ## Delegate Independent Reviews
 
-Start all three reviewers concurrently. Assign a distinct selected model and
-report path to each reviewer. Set explicit model overrides where supported and
-use inheritance only for the primary-model fallback. Give them the same target
-and shared review contract, followed by one complementary lens. Do not expose
-one reviewer's prompt, work, or report to another reviewer before all three
-finish.
+Start every available reviewer, up to three, concurrently. Assign a selected
+model and report path to each reviewer. Set explicit model overrides where
+supported and use inheritance for the primary-model fallback. Give them the
+same target and shared review contract. Do not expose one reviewer's prompt,
+work, or report to another reviewer before all reviewers finish.
 
 Use this shared contract:
 
 - Read the complete target relevant to the requested scope.
-- Assess internal consistency and reader flow while emphasizing the assigned
-  lens.
+- Assess the target through all three review lenses listed below.
 - Cite exact locations, headings, or wording for every finding.
 - Classify severity as `high`, `medium`, or `low`.
 - Explain the reader or execution impact.
 - Propose a concrete revision.
 - Include separate sections for `Findings`, `Strengths`, and `Open questions`.
 - Write the complete review only to the assigned report path.
-- Do not edit the target or either sibling report.
+- Do not edit the target or any sibling report.
 
-Assign these lenses:
+Require every reviewer to apply these lenses:
 
 1. **Internal consistency** — contradictions, terminology, assumptions, scope,
    and agreement between sections.
@@ -78,17 +69,17 @@ Assign these lenses:
 
 ## Verify the Reports
 
-Wait for all three reviewers to finish. Verify that every report exists, is
+Wait for all reviewers to finish. Verify that every active report exists, is
 readable, is non-empty, and contains `Findings`, `Strengths`, and
 `Open questions`.
 
-Do not claim the ensemble is complete or begin synthesis unless all three
-reports pass verification. If a reviewer fails, report which artifact is
+Do not claim the ensemble is complete or begin synthesis unless every active
+report passes verification. If a reviewer fails, report which artifact is
 missing or incomplete and preserve completed reports for diagnosis.
 
 ## Synthesize
 
-Read all three reports yourself and produce a reconciled synthesis for the
+Read every active report yourself and produce a reconciled synthesis for the
 user:
 
 1. Lead with the highest-confidence, highest-impact findings.
@@ -99,7 +90,7 @@ user:
 5. Preserve strengths that should survive revision.
 6. End with a prioritized revision sequence.
 
-In the final response, link all three reports, identify the target reviewed,
-state that the target was not changed, and state that all three reports were
-successfully read. Do not imply that findings were implemented unless the user
-separately requested edits.
+In the final response, link every generated report, identify the target
+reviewed, state that the target was not changed, and state that every generated
+report was successfully read. Do not imply that findings were implemented
+unless the user separately requested edits.
