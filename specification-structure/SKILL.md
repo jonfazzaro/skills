@@ -32,4 +32,5 @@ Name similar lifecycle events precisely. For example, distinguish `when the play
 
 - Rearrange only the `describe` and `it` naming structure unless the requested work includes behavioral changes.
 - Preserve assertions, test data, setup, and execution paths.
+- Wrap tests without moving setup across hook boundaries; preserve each test's effective setup and execution scope.
 - Run the focused specification after the restructuring and inspect its reported full test names.
