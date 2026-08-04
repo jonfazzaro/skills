@@ -134,6 +134,8 @@ Do not probe external systems, generated files, unrelated user edits, destructiv
 
 Say `🧬 Starting semantic minimization`.
 
+**REQUIRED FOLLOW-UP:** Use `targeted-mutation-testing` before the final green checkpoint when the changed production class or component has branching, lifecycle or asynchronous behavior, guards, error recovery, authentication, serialization, or an external-integration seam. Its scope is exactly that changed file and its dedicated specifications; never broaden it to a package or repository run without the user's request.
+
 Challenge behavior-changing production edits made since the expectation was set. If production behavior did not change, record `Mutants: not applicable—no production behavior changed` and continue to the green checkpoint.
 
 ### Simplicity Hierarchy
