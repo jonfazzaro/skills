@@ -104,7 +104,7 @@ Name the exact red or sensitivity command, even when it is identical to the gree
 ## Set an Unmet Expectation
 
 1. Replace the next `[EXPECT]` item with one framework-native executable expectation.
-2. Use the repository's established structure and naming. When no convention exists, prefer a clear Establish–Execute–Expect shape with one execution and one logical assertion.
+2. Use the repository's established structure and naming. When no convention exists, prefer a clear Establish–Execute–Expect shape with one execution and one logical assertion. For behavior specifications that benefit from nested scenario names, use [Specification Structure](references/specification-structure.md).
 3. Trace the expected value before writing the assertion.
 4. Predict the distinguishing failure.
 5. Run the narrow command and observe the expectation fail for the predicted reason.
