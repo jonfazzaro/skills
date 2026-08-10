@@ -1,5 +1,7 @@
 # Specification Structure
 
+Use the `specification-structure` skill whenever adding or editing a behavior specification.
+
 Structure behavior specifications so every root-to-leaf path reads as a complete sentence:
 
 ```text

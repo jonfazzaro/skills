@@ -1,9 +1,11 @@
 ---
 name: specification-structure
-description: Use when structuring specification tests with nested describe blocks, especially when test names mix setup conditions, triggering events, and outcomes. Apply to Vitest, Jest, or similar behavior specifications that need readable given/when/then naming.
+description: Use when structuring specification tests with nested describe blocks, especially when test names mix setup conditions, triggering events, and outcomes. Always use while coding with test-driven development or Continuous Specification. Apply to Vitest, Jest, or similar behavior specifications that need readable given/when/then naming.
 ---
 
 # Specification Structure
+
+**REQUIRED:** Use this skill whenever coding with test-driven development or Continuous Specification.
 
 Organize specifications so the tree reads as complete behavior sentences:
 
