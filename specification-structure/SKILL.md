@@ -24,7 +24,9 @@ Component
 
 Use `given` for a condition: `given a nullable probe with a configured result`.
 
-Use `when` for an event: `when the session is disposed`.
+Use `when` for an event: `when disposing the session`.
+
+Write `when` captions in active voice. Avoid passive voice (`when the session is disposed`). When the action's subject is unknown, use a gerund phrase: `when saving changes`, not `when changes are saved`.
 
 Name similar lifecycle events precisely. For example, distinguish `when the playback probe starts` from `when video playback begins`; the first initiates the probe, while the second confirms the player has started playing.
 
