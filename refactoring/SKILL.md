@@ -1,6 +1,6 @@
 ---
 name: refactoring
-description: Refactoring process for improving code form without changing behavior. Use when the user asks to refactor or when an in-scope readability or design problem obstructs requested work. Keep changes bounded to the requested or touched scope, preserve executable behavior, and commit each green design change.
+description: Use when refactoring code, or when an in-scope readability or design problem obstructs requested work. Improve code form without changing behavior.
 ---
 
 ## Context marker
