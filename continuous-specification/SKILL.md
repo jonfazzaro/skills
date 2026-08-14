@@ -1,6 +1,6 @@
 ---
 name: continuous-specification
-description: Continuous Specification workflow for any change that adds or alters executable behavior, including features, bug fixes, integrations, migrations, scripts, performance constraints, and behavior-changing refactors. Use whenever the agent writes or changes production code unless the work is explicitly non-behavioral (such as docs-only edits, formatting, or a pure rename/move), generated code, an exploratory disposable spike, or the user explicitly asks to skip specifications. Defines requirement planning, one-expectation red/green cycles, observable evidence, targeted semantic minimization, micro-commits at green checkpoints, and bounded design while green.
+description: Use whenever a production-code change alters executable behavior—features, fixes, integrations, migrations, scripts, performance work, or behavior-changing refactors. Establish behavior through small executable expectations and green checkpoints.
 ---
 
 ## Context marker
