@@ -1,6 +1,6 @@
 ---
 name: specification-structure
-description: "Use whenever creating, changing, fixing, reviewing, or refactoring automated tests that use specification-style suites—especially Vitest, Jest, or similar describe/it APIs. Invoke this skill even when the request only says to add or update tests: structure the suite so nested given/when contexts express setup and events, while it captions express observable outcomes. Also use for test-driven development, Continuous Specification, and restructuring unclear test names or nested describe blocks."
+description: "Use whenever opening, writing, reviewing, or changing a test or specification file, including *.test.* and *.spec.* files reached while executing an implementation plan. Do not invoke merely because a plan contains future test work. Use alongside Continuous Specification, TDD, and other test-writing skills. When the file has a root describe or existing nested contexts, organize only the new or changed tests into readable given/when branches whose it captions express observable outcomes. Preserve flat test files with no describe structure. Applies to Vitest, Jest, and comparable describe/it frameworks."
 ---
 
 ## Context marker
@@ -13,7 +13,7 @@ When the skill activates, begin the first commentary update with `🔺` and a co
 
 **REQUIRED:** Use this skill whenever coding with test-driven development or Continuous Specification.
 
-Organize specifications so the tree reads as complete behavior sentences:
+When a test file already has a root `describe`, organize the new or changed specifications so the affected tree reads as complete behavior sentences. Preserve a flat test file with no `describe` structure.
 
 ```text
 Component
@@ -40,6 +40,7 @@ Name similar lifecycle events precisely. For example, distinguish `when the play
 
 ## Preserve the specification
 
+- Limit restructuring to the new or changed tests unless the request explicitly includes broader test cleanup.
 - Rearrange only the `describe` and `it` naming structure unless the requested work includes behavioral changes.
 - Preserve assertions, test data, setup, and execution paths.
 - Wrap tests without moving setup across hook boundaries; preserve each test's effective setup and execution scope.
