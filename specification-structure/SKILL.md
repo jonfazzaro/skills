@@ -1,6 +1,6 @@
 ---
 name: specification-structure
-description: "Use whenever opening, writing, reviewing, or changing a test or specification file, including *.test.* and *.spec.* files reached while executing an implementation plan. Do not invoke merely because a plan contains future test work. Use alongside Continuous Specification, TDD, and other test-writing skills. When the file has a root describe or existing nested contexts, organize only the new or changed tests into readable given/when branches whose it captions express observable outcomes. Preserve flat test files with no describe structure. Applies to Vitest, Jest, and comparable describe/it frameworks."
+description: "Use whenever editing a test or specification file, including *.test.* and *.spec.*. Use alongside Continuous Specification and TDD. In suites that already use describe, structure new or changed tests with readable when/given contexts and outcome-focused it captions; preserve flat suites without describe."
 ---
 
 ## Context marker
