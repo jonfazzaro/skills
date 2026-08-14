@@ -1,6 +1,6 @@
 ---
 name: specification-structure
-description: Use when structuring specification tests with nested describe blocks, especially when test names mix setup conditions, triggering events, and outcomes. Always use while coding with test-driven development or Continuous Specification. Apply to Vitest, Jest, or similar behavior specifications that need readable given/when/then naming.
+description: "Use whenever creating, changing, fixing, reviewing, or refactoring automated tests that use specification-style suites—especially Vitest, Jest, or similar describe/it APIs. Invoke this skill even when the request only says to add or update tests: structure the suite so nested given/when contexts express setup and events, while it captions express observable outcomes. Also use for test-driven development, Continuous Specification, and restructuring unclear test names or nested describe blocks."
 ---
 
 ## Context marker
