@@ -5,9 +5,9 @@ description: Continuous Specification workflow for any change that adds or alter
 
 ## Context marker
 
-📋
+🔴🟢🌀
 
-When the skill activates, begin the first commentary update with `📋` and a concise `Using continuous-specification ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+When the skill activates, begin the first commentary update with `🔴🟢🌀` and a concise `Using continuous-specification ...` announcement. Do not repeat the marker on later updates unless another skill activates.
 
 # Continuous Specification
 
