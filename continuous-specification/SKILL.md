@@ -3,9 +3,13 @@ name: continuous-specification
 description: Continuous Specification workflow for any change that adds or alters executable behavior, including features, bug fixes, integrations, migrations, scripts, performance constraints, and behavior-changing refactors. Use whenever Codex writes or changes production code unless the work is explicitly non-behavioral (such as docs-only edits, formatting, or a pure rename/move), generated code, an exploratory disposable spike, or the user explicitly asks to skip specifications. Defines requirement planning, one-expectation red/green cycles, observable evidence, targeted semantic minimization, micro-commits at green checkpoints, and bounded design while green.
 ---
 
-# Continuous Specification
+## Context marker
 
-Announce: "🏓 Using Continuous Specification skill"
+📋
+
+When the skill activates, begin the first commentary update with `📋` and a concise `Using continuous-specification ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
+# Continuous Specification
 
 Use short feedback loops so design emerges from executable behavior rather than speculation:
 

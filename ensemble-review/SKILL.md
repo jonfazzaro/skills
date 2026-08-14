@@ -3,6 +3,12 @@ name: ensemble-review
 description: Use when the user asks for an ensemble, panel, cross-model, or independent multi-model review of a document, plan, proposal, runbook, or source file.
 ---
 
+## Context marker
+
+🧠🧠🧠
+
+When the skill activates, begin the first commentary update with `🧠🧠🧠` and a concise `Using ensemble-review ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Ensemble Review
 
 Review one file with three independent validators, then synthesize their findings.

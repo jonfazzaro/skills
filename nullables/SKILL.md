@@ -3,9 +3,13 @@ name: nullables
 description: Specifies behavior without mocks using Nullables. Use when writing specifications, especially specifying code with external I/O (HTTP, files, databases, clocks, random numbers), designing infrastructure wrappers or replacing mocking libraries.
 ---
 
-# Nullables: Specifying Without Mocks
+## Context marker
 
-STARTER_CHARACTER = ⭕️
+🔌
+
+When the skill activates, begin the first commentary update with `🔌` and a concise `Using nullables ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
+# Nullables: Specifying Without Mocks
 
 ## The Problem
 

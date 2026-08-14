@@ -3,13 +3,15 @@ name: micro-commits
 description: Micro-commits process for committing early and often as code is written. Use whenever writing or changing code, especially alongside Continuous Specification or TDD — each green spec run is a commit opportunity.
 ---
 
+## Context marker
+
+🔹
+
+When the skill activates, begin the first commentary update with `🔹` and a concise `Using micro-commits ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Micro-commits
 
-STARTER_CHARACTER = 📍
-
 Commit early and often to move forward quickly and safely. Each commit is a safety checkpoint: a known-good state you can return to. Small, focused commits make history readable, reversals cheap, and collaboration smooth.
-
-When starting, announce: "📍 Using Micro-commits skill"
 
 ## When to Commit
 

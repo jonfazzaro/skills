@@ -3,11 +3,13 @@ name: refactoring
 description: Refactoring process for improving code form without changing behavior. Use when the user asks to refactor or when an in-scope readability or design problem obstructs requested work. Keep changes bounded to the requested or touched scope, preserve executable behavior, and commit each green design change.
 ---
 
+## Context marker
+
+📐
+
+When the skill activates, begin the first commentary update with `📐` and a concise `Using refactoring ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Refactoring: Designing Your Code
-
-STARTER_CHARACTER = 🟣
-
-When starting, announce: "🟣 Using REFACTORING skill".
 
 Refactoring is how you design your code. It is not cleanup after the fact — it is an active design activity that shapes the code into a clear expression of its intent.
 

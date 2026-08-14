@@ -3,6 +3,12 @@ name: targeted-mutation-testing
 description: Use when a changed production class or component has branching, lifecycle or asynchronous behavior, guards, error recovery, authentication, serialization, or an external-integration seam and needs file-scoped mutation testing before completion.
 ---
 
+## Context marker
+
+🧬
+
+When the skill activates, begin the first commentary update with `🧬` and a concise `Using targeted-mutation-testing ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Targeted Mutation Testing
 
 Run mutation testing for one changed production class or component and its dedicated specifications. This is a completion check for meaningful behavior, not a package- or repository-wide quality metric.

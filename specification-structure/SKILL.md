@@ -3,6 +3,12 @@ name: specification-structure
 description: Use when structuring specification tests with nested describe blocks, especially when test names mix setup conditions, triggering events, and outcomes. Always use while coding with test-driven development or Continuous Specification. Apply to Vitest, Jest, or similar behavior specifications that need readable given/when/then naming.
 ---
 
+## Context marker
+
+🔺
+
+When the skill activates, begin the first commentary update with `🔺` and a concise `Using specification-structure ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Specification Structure
 
 **REQUIRED:** Use this skill whenever coding with test-driven development or Continuous Specification.
