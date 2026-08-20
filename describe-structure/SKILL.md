@@ -1,15 +1,15 @@
 ---
-name: specification-structure
-description: "Use whenever editing a test or specification file, including *.test.* and *.spec.*. Use alongside Continuous Specification and TDD. In suites that already use describe, structure new or changed tests with readable when/given contexts and outcome-focused it captions; preserve flat suites without describe."
+name: describe-structure
+description: "Use whenever editing a test or specification file, including *.test.* and *.spec.*. Use alongside Continuous Specification or TDD. In suites that already use describe, structure new or changed tests with readable when/given contexts and outcome-focused it captions; preserve flat suites without describe."
 ---
 
 ## Context marker
 
 🔺
 
-When the skill activates, begin the first commentary update with `🔺` and a concise `Using specification-structure ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+When the skill activates, begin the first commentary update with `🔺` and a concise `Using describe-structure ...` announcement. Do not repeat the marker on later updates unless another skill activates.
 
-# Specification Structure
+# Describe Structure
 
 **REQUIRED:** Use this skill whenever coding with test-driven development or Continuous Specification.
 

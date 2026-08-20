@@ -17,7 +17,7 @@ Use short feedback loops so design emerges from executable behavior rather than 
 Set → Meet → Minimize → Commit → Design
 ```
 
-**REQUIRED SUB-SKILL:** Use `specification-structure` whenever adding or editing a behavior specification.
+**REQUIRED SUB-SKILL:** Use `describe-structure` whenever adding or editing a behavior specification.
 
 Keep user requirements authoritative throughout the loop. Treat executable expectations as the authority for implemented behavior and planned `[EXPECT]` items as the completeness ledger. A green suite proves neither that a new expectation is sensitive nor that every requested behavior is complete.
 
@@ -110,7 +110,7 @@ Name the exact red or sensitivity command, even when it is identical to the gree
 ## Set an Unmet Expectation
 
 1. Replace the next `[EXPECT]` item with one framework-native executable expectation.
-2. Use the repository's established structure and naming. Use `specification-structure` for every behavior specification; when no convention exists, apply its given/when/then hierarchy alongside a clear Establish–Execute–Expect shape with one execution and one logical assertion.
+2. Use the repository's established structure and naming. Use `describe-structure` for every behavior specification; when no convention exists, apply its given/when/then hierarchy alongside a clear Establish–Execute–Expect shape with one execution and one logical assertion.
 3. Trace the expected value before writing the assertion.
 4. Predict the distinguishing failure.
 5. Run the narrow command and observe the expectation fail for the predicted reason.

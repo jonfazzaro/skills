@@ -1,6 +1,6 @@
-# Specification Structure
+# Describe Structure
 
-Use the `specification-structure` skill whenever adding or editing a behavior specification.
+Use the `describe-structure` skill whenever adding or editing a behavior specification.
 
 Structure behavior specifications so every root-to-leaf path reads as a complete sentence:
 
@@ -21,4 +21,4 @@ Component
 
 Wrap tests without moving setup across hook boundaries. Preserve each test's effective setup and execution scope, plus its assertions, test data, and execution path.
 
-For the reusable workflow, use the `specification-structure` skill.
+For the reusable workflow, use the `describe-structure` skill.
