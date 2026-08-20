@@ -4,11 +4,13 @@ A collection of skills to help agents make code cheaper and safer to change.
 
 | Skill | Description |
 |-------|-------------|
-| [continuous-specification](continuous-specification/SKILL.md) | TDD framed around specification — one agent sets one behavior, meets and minimizes it, commits the green checkpoint, and designs within scope. |
-| [nullables](nullables/SKILL.md) | Specify code with external I/O (HTTP, files, databases, clocks) without mocks. Infrastructure wrappers with `create()`/`createNull()` factory methods enable fast, state-based, sociable specifications. |
-| [refactoring](refactoring/SKILL.md) | Bounded design process — improve one in-scope behavior-preserving step at a time, keep specifications green, and commit each change. |
-| [micro-commits](micro-commits/SKILL.md) | Commit at every green checkpoint. Small, focused commits make history readable, reversals cheap, and progress safe. |
-| [ensemble-review](ensemble-review/SKILL.md) | Run three isolated, concurrent reviews with distinct models and synthesize their findings into a prioritized revision plan. |
+| [continuous-specification](continuous-specification/SKILL.md) | Specify behavior-changing production work through small executable expectations, green checkpoints, targeted mutation checks, and in-scope design. |
+| [describe-structure](describe-structure/SKILL.md) | Structure changed specifications with readable `when` and `given` contexts while preserving a suite's existing test style and behavior. |
+| [targeted-mutation-testing](targeted-mutation-testing/SKILL.md) | Verify changed, behaviorally meaningful production code with file-scoped mutation testing and observable, state-based specifications. |
+| [nullables](nullables/SKILL.md) | Specify code with external I/O (HTTP, files, databases, clocks, or randomness) without mocks, using production-ready null infrastructure. |
+| [refactoring](refactoring/SKILL.md) | Improve in-scope code form without changing behavior, keeping specifications green and committing each bounded design step. |
+| [micro-commits](micro-commits/SKILL.md) | Commit each green checkpoint or isolated logical change so history stays readable, recovery stays cheap, and collaboration stays safe. |
+| [ensemble-review](ensemble-review/SKILL.md) | Run three isolated, independent reviews and synthesize their evidence into a prioritized revision plan. |
 
 ## Installation
 
