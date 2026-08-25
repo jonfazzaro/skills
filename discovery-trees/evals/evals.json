@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "Plan a small feature to let account owners export their invoices as CSV. We know it needs date filtering and a download endpoint, but we have not started coding.",
-      "expected_output": "A concise Mermaid Discovery Tree that plans the story with unstarted tasks, uses the required status colors and labels, and recommends the most valuable initial thin slice.",
+      "expected_output": "A concise text Discovery Tree that plans the story with unstarted tasks, uses the required status swatches and labels, and recommends the most valuable initial thin slice.",
       "files": []
     },
     {
@@ -15,7 +15,7 @@
     },
     {
       "id": 3,
-      "prompt": "Mermaid cannot render in this chat. The CSV generator is done, its tests pass, and the download endpoint is ready to deploy after the retention decision. Show me where we stand and what I should do next.",
+      "prompt": "The CSV generator is done, its tests pass, and the download endpoint is ready to deploy after the retention decision. Show me where we stand and what I should do next.",
       "expected_output": "A plain-text Discovery Tree with labeled color swatches, completed work marked done, the retention blocker, and a clear recommended next action.",
       "files": []
     }

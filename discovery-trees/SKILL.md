@@ -1,6 +1,6 @@
 ---
 name: discovery-trees
-description: Render a concise, color-coded Discovery Tree whenever communicating a coding plan, specification, plan adjustment, newly discovered work, or completion of a planned task. Use it proactively during implementation to make the current state, dependencies, and viable next tasks easy for a human to assess and choose between. Do not use it for a simple isolated answer or task with no meaningful plan.
+description: Render a concise, color-coded text Discovery Tree whenever communicating a coding plan, specification, plan adjustment, newly discovered work, or completion of a planned task. Use it proactively during implementation to make the current state, dependencies, and viable next tasks easy for a human to assess and choose between. Do not use it for a simple isolated answer or task with no meaningful plan.
 ---
 
 ## Context marker
@@ -42,43 +42,21 @@ Keep tasks as small, concrete units of work. Prefer thin, user-observable slices
 
 ## Status vocabulary and visual language
 
-Every node carries one of these statuses. Use the exact color in Mermaid and the matching swatch plus label in a text fallback.
+Every node carries one of these statuses. Use the matching swatch and status label so the tree can be read quickly in color and remains unambiguous in monochrome clients.
 
-| Status | Meaning | Mermaid fill | Text marker |
-| --- | --- | --- | --- |
-| `story` | User value or outcome being pursued | `#A9C7F5` | `🟦 [story]` |
-| `to do` | Planned, unstarted work | `#FFF59B` | `🟨 [to do]` |
-| `doing` | Work actively in progress | `#FFB14D` | `🟧 [doing]` |
-| `done` | Completed work | `#D2F09B` | `🟩 [done]` |
-| `blocked` | Cannot responsibly proceed without an external answer, decision, or prerequisite | `#FA9C9F` | `🟥 [blocked]` |
+| Status | Meaning | Text marker |
+| --- | --- | --- |
+| `story` | User value or outcome being pursued | `🟦 [story]` |
+| `to do` | Planned, unstarted work | `🟨 [to do]` |
+| `doing` | Work actively in progress | `🟧 [doing]` |
+| `done` | Completed work | `🟩 [done]` |
+| `blocked` | Cannot responsibly proceed without an external answer, decision, or prerequisite | `🟥 [blocked]` |
 
 Never mark a card blocked merely because it is lower priority.
 
 ## Render the tree
 
-Use a Mermaid flowchart when Mermaid is supported in the current conversation. Use `flowchart TD` and a code fence labeled `mermaid`. Give every card its status label, so the structure remains clear if a renderer loses color.
-
-```mermaid
-flowchart TD
-    story["[story] Export invoices"]:::story
-    validate["[to do] Validate date range"]:::todo
-    generate["[doing] Generate CSV"]:::doing
-    money["[done] Format currency"]:::done
-    retention["[blocked] Confirm retention policy"]:::blocked
-
-    story --> validate
-    story --> generate
-    story --> money
-    story --> retention
-
-    classDef story fill:#A9C7F5,stroke:#7B9ED8,color:#111111
-    classDef todo fill:#FFF59B,stroke:#D8CA57,color:#111111
-    classDef doing fill:#FFB14D,stroke:#D77E19,color:#111111
-    classDef done fill:#D2F09B,stroke:#9DBD5E,color:#111111
-    classDef blocked fill:#FA9C9F,stroke:#D35F63,color:#111111
-```
-
-If Mermaid is unavailable, render the same hierarchy in a plain-text code block. Preserve the text marker and status label exactly; color alone is not reliable in all terminals and chat clients.
+Render the hierarchy in a plain-text code block. Preserve the text marker and status label exactly; color alone is not reliable in all terminals and chat clients.
 
 ```text
 🟦 [story] Export invoices
@@ -88,7 +66,7 @@ If Mermaid is unavailable, render the same hierarchy in a plain-text code block.
 └─ 🟥 [blocked] Confirm retention policy
 ```
 
-Use arrows only for parent-child work relationships. State a cross-branch dependency in the node text, for example `[blocked] Publish API — waiting for retention policy`, instead of adding a confusing web of edges.
+Use tree branches only for parent-child work relationships. State a cross-branch dependency in the node text, for example `[blocked] Publish API — waiting for retention policy`, instead of drawing a confusing web of references.
 
 ## Recommend the next task
 
