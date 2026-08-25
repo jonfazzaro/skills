@@ -11,7 +11,7 @@ When the skill activates, begin the first commentary update with `🌳` and a co
 
 # Discovery Trees
 
-Use a Discovery Tree as a live information radiator for the work being discussed. It is a conversation artifact, not a repository artifact: derive it from the current plan and the work just completed. Its purpose is to expose the smallest useful picture of progress and make the next decision easy.
+Use a Discovery Tree as a plan-backed information radiator for the work being discussed. Keep it in the conversation’s plan state, never as a repository artifact. Its purpose is to expose the smallest useful picture of progress and make the next decision easy.
 
 For the practice’s origin and broader mindset, consult [references/industrial-logic-discovery-trees.md](references/industrial-logic-discovery-trees.md) when the user asks about the rationale, history, or adaptations of Discovery Trees. The rendering and communication workflow in this skill remains the source of truth for agent behavior.
 
@@ -25,6 +25,21 @@ Render a fresh tree in the conversation when you:
 - uncover work that changes the next decision.
 
 Do not wait for a formal planning ceremony. Discovery Trees support just-in-time planning, so add a small branch when new work is learned rather than pretending it was known from the start.
+
+## Maintain the tree in the plan
+
+Treat the plan as the durable source of truth for the current Discovery Tree. Before rendering a new tree, read the existing plan record. When creating a plan, record each tree node with a stable internal identity, parent identity, task wording, and Discovery Tree status. Keep those details in the plan even when the node is outside the current decision horizon.
+
+When work changes:
+
+- update the matching plan node before rendering the new tree;
+- retain its task wording and identity when only its status changes;
+- add newly discovered work as a child of its discovered parent rather than recreating a branch; and
+- change or remove a node’s wording only when the user or new evidence changes its meaning.
+
+Use the plan facility available in the environment. If it supports node notes or metadata, store the identity, parent, wording, and status there. If it supports only flat task text, preserve the hierarchy with a stable path and status swatch, for example `🟧 Export invoices > Generate CSV`. The path is plan bookkeeping; render only the node’s swatch and task wording in the conversation.
+
+Do not infer a new tree from scratch when a plan-backed tree already exists. Reuse its stored notes so the human can follow the same cards across dialogue turns. Collapse nodes only in the rendered view, not in the plan record.
 
 ## Choose the decision horizon
 

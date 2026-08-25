@@ -10,11 +10,17 @@
     {
       "id": 2,
       "prompt": "We finished the API contract tests and have started the invoice CSV generator. During implementation, legal says we must confirm data-retention requirements before exposing the download endpoint. Update the plan.",
-      "expected_output": "An updated, decision-horizon Discovery Tree showing completed, active, planned, and blocked work. It explains the discovery briefly and recommends the next task without treating the blocker as ordinary backlog work.",
+      "expected_output": "An updated, plan-backed decision-horizon Discovery Tree showing completed, active, planned, and blocked work. It preserves the earlier task wording, explains the discovery briefly, and recommends the next task without treating the blocker as ordinary backlog work.",
       "files": []
     },
     {
       "id": 3,
+      "prompt": "Continue this plan-backed Discovery Tree: the stored plan says `🟦 Export invoices`, `🟩 Export invoices > Validate date range`, `🟧 Export invoices > Generate CSV`, and `🟥 Export invoices > Confirm retention policy`. The CSV generator is now complete. Update the plan and show the current tree.",
+      "expected_output": "The plan updates the existing Generate CSV node to done without rewording or duplicating it. The rendered tree preserves the known card text, shows the completed change, and recommends the best next action.",
+      "files": []
+    },
+    {
+      "id": 4,
       "prompt": "The CSV generator is done, its tests pass, and the download endpoint is ready to deploy after the retention decision. Show me where we stand and what I should do next.",
       "expected_output": "A plain-text Discovery Tree with color swatches only in its nodes, completed work, the retention blocker, and a clear recommended next action.",
       "files": []
