@@ -26,6 +26,7 @@ Component
 
 - Extract the action or triggering event from each existing `it` caption into a `describe` caption beginning with `when`.
 - Extract each state, input, or precondition into a nested `describe` caption beginning with `given`.
+- Write every `describe` and `it` caption for people, in plain-English domain language; try not to use a code function, method, or API name as the caption.
 - Keep the observable outcome in the `it` caption.
 - Put shared actions above their distinct givens. A `when` block should contain every applicable `given` branch.
 - Read every root-to-leaf path aloud. Each must be grammatical without relying on test setup code.
