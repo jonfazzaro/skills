@@ -42,31 +42,31 @@ Keep tasks as small, concrete units of work. Prefer thin, user-observable slices
 
 ## Status vocabulary and visual language
 
-Every node carries one of these statuses. Use the matching swatch and status label so the tree can be read quickly in color and remains unambiguous in monochrome clients.
+Every node carries one of these statuses. Use its matching swatch in the rendered tree; keep the status word out of the node text.
 
-| Status | Meaning | Text marker |
+| Status | Meaning | Swatch |
 | --- | --- | --- |
-| `story` | User value or outcome being pursued | `🟦 [story]` |
-| `to do` | Planned, unstarted work | `🟨 [to do]` |
-| `doing` | Work actively in progress | `🟧 [doing]` |
-| `done` | Completed work | `🟩 [done]` |
-| `blocked` | Cannot responsibly proceed without an external answer, decision, or prerequisite | `🟥 [blocked]` |
+| `story` | User value or outcome being pursued | `🟦` |
+| `to do` | Planned, unstarted work | `🟨` |
+| `doing` | Work actively in progress | `🟧` |
+| `done` | Completed work | `🟩` |
+| `blocked` | Cannot responsibly proceed without an external answer, decision, or prerequisite | `🟥` |
 
 Never mark a card blocked merely because it is lower priority.
 
 ## Render the tree
 
-Render the hierarchy in a plain-text code block. Preserve the text marker and status label exactly; color alone is not reliable in all terminals and chat clients.
+Render the hierarchy in a plain-text code block. Begin every node with its status swatch and then the task text. Do not render status words or a status legend in the conversation.
 
 ```text
-🟦 [story] Export invoices
-├─ 🟨 [to do] Validate date range
-├─ 🟧 [doing] Generate CSV
-├─ 🟩 [done] Format currency
-└─ 🟥 [blocked] Confirm retention policy
+🟦 Export invoices
+├─ 🟨 Validate date range
+├─ 🟧 Generate CSV
+├─ 🟩 Format currency
+└─ 🟥 Confirm retention policy
 ```
 
-Use tree branches only for parent-child work relationships. State a cross-branch dependency in the node text, for example `[blocked] Publish API — waiting for retention policy`, instead of drawing a confusing web of references.
+Use tree branches only for parent-child work relationships. State a cross-branch dependency in the node text, for example `🟥 Publish API — waiting for retention policy`, instead of drawing a confusing web of references.
 
 ## Recommend the next task
 
