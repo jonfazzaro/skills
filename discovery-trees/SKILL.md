@@ -3,6 +3,12 @@ name: discovery-trees
 description: Render a concise, color-coded Discovery Tree whenever communicating a coding plan, specification, plan adjustment, newly discovered work, or completion of a planned task. Use it proactively during implementation to make the current state, dependencies, and viable next tasks easy for a human to assess and choose between. Do not use it for a simple isolated answer or task with no meaningful plan.
 ---
 
+## Context marker
+
+🌳
+
+When the skill activates, begin the first commentary update with `🌳` and a concise `Using discovery-trees ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+
 # Discovery Trees
 
 Use a Discovery Tree as a live information radiator for the work being discussed. It is a conversation artifact, not a repository artifact: derive it from the current plan and the work just completed. Its purpose is to expose the smallest useful picture of progress and make the next decision easy.
