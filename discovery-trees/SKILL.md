@@ -7,6 +7,8 @@ description: Render a concise, color-coded Discovery Tree whenever communicating
 
 Use a Discovery Tree as a live information radiator for the work being discussed. It is a conversation artifact, not a repository artifact: derive it from the current plan and the work just completed. Its purpose is to expose the smallest useful picture of progress and make the next decision easy.
 
+For the practice’s origin and broader mindset, consult [references/industrial-logic-discovery-trees.md](references/industrial-logic-discovery-trees.md) when the user asks about the rationale, history, or adaptations of Discovery Trees. The rendering and communication workflow in this skill remains the source of truth for agent behavior.
+
 ## When to render
 
 Render a fresh tree in the conversation when you:
