@@ -13,6 +13,8 @@ When the skill activates, begin the first commentary update with `🔹` and a co
 
 Commit early and often to move forward quickly and safely. Each commit is a safety checkpoint: a known-good state you can return to. Small, focused commits make history readable, reversals cheap, and collaboration smooth.
 
+[Credit](credits.md) for the original rationale and examples that informed this skill.
+
 ## When to Commit
 
 Commit at every natural green checkpoint — do not batch up multiple logical changes into one commit:
