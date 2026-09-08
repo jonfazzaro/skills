@@ -1,6 +1,6 @@
 ---
 name: describe-structure
-description: "Use whenever editing a test or specification file, including *.test.* and *.spec.*. Use alongside Continuous Specification or TDD. In suites that already use describe, structure new or changed tests with readable when/given contexts and outcome-focused it captions; preserve flat suites without describe."
+description: "Required whenever adding, editing, or restructuring tests or specifications, including *.test.* and *.spec.* files. Use for unit-test coverage, regression tests, TDD, mutation testing, bug fixes, and refactoring—even when the user does not name test structure. Invoke before writing test code. In suites that already use describe, structure every new or changed test as component → when [action] → given [condition] → outcome-focused it; preserve flat suites without describe."
 ---
 
 ## Context marker
