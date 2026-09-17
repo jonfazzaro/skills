@@ -7,7 +7,7 @@ description: Specifies behavior without mocks using Nullables. Use when writing 
 
 🔌
 
-When the skill activates, begin the first commentary update with `🔌` and a concise `Using nullables ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Nullables: Specifying Without Mocks
 
@@ -19,11 +19,10 @@ Mocking libraries solve speed but introduce a new problem: they couple specifica
 
 ## The Solution
 
-Nullables are production code with an "off switch" for infrastructure—not test doubles, but real code you can ship (dry-run modes, cache warming, offline operation). They enable **narrow, sociable, state-based specifications**:
+Nullables are production code with an "off switch" for infrastructure—not test doubles, but real code you can ship (dry-run modes, cache warming, offline operation). They enable **narrow, sociable, [observable specifications](../references/observable-specifications.md)**:
 
 - **Narrow**: Each expectation focuses on one class/module, not broad end-to-end flows
 - **Sociable**: Specifications use real dependencies—only infrastructure I/O is neutralized. (Contrast with "solitary" tests that mock everything, isolating the class under test.)
-- **State-based**: Assert on outputs and state, not on which methods were called
 
 ## When to Use
 
@@ -37,6 +36,8 @@ Nullables are production code with an "off switch" for infrastructure—not test
 - Your own classes — make them Nullable directly, or null their dependencies
 
 **Greenfield**: Add wrappers incrementally as specifications demand—don't over-engineer upfront.
+
+When adding a wrapper changes production behavior, use [Continuous Specification](../references/continuous-specification.md) to establish that behavior.
 
 **Existing codebase**: See [migration.md](references/migration.md) for incremental conversion strategies.
 
@@ -125,7 +126,7 @@ Specifications exercise real `App` code. Only infrastructure I/O is neutralized.
 
 ### Specification Philosophy
 
-- **State-based, not interaction-based** — verify what was produced, not which methods were called
+- **[Observable, not interaction-based](../references/observable-specifications.md)** — verify what was produced, not which methods were called
 - **Sociable, not solitary** — specifications use real dependencies; only infrastructure is nulled. Bugs cause multiple specification failures, pinpointing the problem
 - **Paranoic Telemetry** — assume everything fails. Specify error paths, timeouts, and failures as thoroughly as happy paths
 - **Collaborator-Based Isolation** — use dependencies' own methods in assertions rather than hardcoding expectations:

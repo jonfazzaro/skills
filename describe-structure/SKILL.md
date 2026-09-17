@@ -7,7 +7,7 @@ description: "Required whenever adding, editing, or restructuring tests or speci
 
 🔺
 
-When the skill activates, begin the first commentary update with `🔺` and a concise `Using describe-structure ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Describe Structure
 

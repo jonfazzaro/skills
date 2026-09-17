@@ -7,7 +7,7 @@ description: Micro-commits process for committing early and often as code is wri
 
 🔹
 
-When the skill activates, begin the first commentary update with `🔹` and a concise `Using micro-commits ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Micro-commits
 
@@ -40,31 +40,11 @@ Keep messages under 72 characters. No periods. No past tense ("added") — use p
 
 ## Process
 
-1. Verify the code is in a green / working state before committing.
-2. Stage only the files relevant to this commit (`git add -p` for partial staging when needed).
-3. Inspect the staged diff and remove unrelated user work.
-4. Write the commit message using the format above.
-5. Commit.
-
-Never commit broken or red code. If something is partially done, stash or leave it unstaged.
+Before every commit, follow the [safe green-checkpoint procedure](../references/safe-commits.md). Then write the commit message using the format above and commit.
 
 ## Integration with Continuous Specification
 
-In the CS cycle, commit at these moments:
-
-- After each expectation reaches its green checkpoint: commit the expectation and minimal production behavior together.
-- After each design change: one commit per change using the `design:` prefix.
-- Do NOT commit during the red phase (unmet expectation). Wait for green.
-
-Example sequence:
-
-```
-feat: zero plus a number equals that number
-feat: add two positive numbers
-design: extract addition into calculator class
-feat: add two negative numbers
-design: rename add to sum
-```
+For checkpoint timing and its relationship to behavior and design work, read [Continuous Specification](../references/continuous-specification.md). In that cycle, commit each green behavior and validated design change separately; never commit an unmet expectation.
 
 ## Reverting
 

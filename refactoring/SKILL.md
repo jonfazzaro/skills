@@ -7,7 +7,7 @@ description: Use when refactoring code, or when an in-scope readability or desig
 
 📐
 
-When the skill activates, begin the first commentary update with `📐` and a concise `Using refactoring ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Refactoring: Designing Your Code
 
@@ -29,6 +29,8 @@ Do not change specification code during refactoring, except:
 - Import path updates if something moved
 
 Never change specification assertions, specification data, or specification logic.
+
+If the requested edit changes production behavior, use [Continuous Specification](../references/continuous-specification.md) instead. This workflow is only for behavior-preserving design changes.
 
 ## 1. Prep
 
@@ -56,12 +58,11 @@ Prefer self-explanatory, readable code over comments.
 ### Process
 
 For each refactor:
-1. Ensure all specs pass
+1. Use [scoped verification](../references/scoped-verification.md) to establish a green baseline and verify each change.
 2. Choose and perform the simplest possible refactoring (one at a time)
-3. Ensure all specs pass after the change
-4. Commit each successful refactor as `design: <refactoring>` unless repository conventions require another format.
+3. [Commit each successful refactor safely](../references/safe-commits.md) as `design: <refactoring>` unless repository conventions require another format.
    Prefer small granular commits. If applying the same refactoring pattern to multiple locations, change one location at a time and commit each separately.
-5. Provide a status update after each refactor
+4. Provide a status update after each refactor
 
 ## 3. Final Evaluation
 
@@ -83,6 +84,3 @@ Provide a high-level summary of the refactoring:
 - List each file that was touched
 - Describe the key improvements made in each file
 
-## Language-Specific
-
-For Java: See [references/java.md](references/java.md)

@@ -7,7 +7,7 @@ description: Render a concise, color-coded text Discovery Tree whenever communic
 
 🌳
 
-When the skill activates, begin the first commentary update with `🌳` and a concise `Using discovery-trees ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Discovery Trees
 

@@ -7,7 +7,7 @@ description: Use whenever a production-code change alters executable behavior—
 
 🔴🟢🌀
 
-When the skill activates, begin the first commentary update with `🔴🟢🌀` and a concise `Using continuous-specification ...` announcement. Do not repeat the marker on later updates unless another skill activates.
+[Announce this skill's activation](../references/skill-activation.md).
 
 # Continuous Specification
 
@@ -49,7 +49,7 @@ Follow repository-native language, framework, naming, and file-layout convention
 5. Minimize every behavior-changing production edit with targeted semantic mutants.
 6. Commit each logical change as soon as the relevant expectations are green.
 7. Design only while all relevant expectations are green.
-8. Specify observable responses or state, not collaborator calls or private implementation.
+8. [Specify observable behavior](../references/observable-specifications.md), not collaborator calls or private implementation.
 9. Preserve required documentation, safety comments, licenses, and repository conventions. Prefer expressive code over redundant production comments.
 10. Keep unrelated user changes out of test mutations, restoration, staging, and commits.
 11. Push back when requirements are contradictory, unsafe, or too ambiguous to specify.
@@ -78,12 +78,7 @@ Walk through [ZOMBIES](references/zombies.md):
 - Interface clarity
 - Exceptions and recovery
 
-Identify two commands before implementation:
-
-- The narrowest command that demonstrates the current expectation.
-- The broader relevant suite that detects regressions in the affected behavior.
-
-Use the narrow command during the short loop. Run the broader relevant suite before a green checkpoint and at task completion. If either command is unavailable, investigate before editing; if it remains unavailable, disclose the verification gap and do not claim executable proof or create a green-checkpoint commit.
+Before implementation, identify the [focused and broader verification commands](../references/scoped-verification.md) for the behavior. Use the focused command during the short loop and the broader suite before each green checkpoint and at task completion.
 
 Treat the remaining `[EXPECT]` comments as the completeness ledger. During Set, replace only the next comment with its executable expectation. Do not delete, reorder, or silently rewrite the remaining items to make the task appear complete.
 
@@ -191,15 +186,9 @@ Say `🧬 Semantic minimization complete` only when every category is accounted 
 
 ## Commit the Green Checkpoint
 
-After minimization and the passing broader relevant suite, commit the expectation and its minimal production behavior together. Do not batch multiple expectations.
+After minimization and the passing broader relevant suite, [make a safe green-checkpoint commit](../references/safe-commits.md) containing the expectation and its minimal production behavior. Do not batch multiple expectations. Commit new behavior as `feat: <expectation description>` or a correction as `fix: <behavior corrected>`, unless repository conventions require another format. Record the commit hash and subject in the evidence ledger.
 
-1. Inspect repository status.
-2. Stage only the files or hunks owned by the current expectation.
-3. Inspect the staged diff and remove unrelated user work from it.
-4. Commit new behavior as `feat: <expectation description>` or a correction as `fix: <behavior corrected>`, unless repository conventions require another format.
-5. Record the commit hash and subject in the evidence ledger.
-
-Never commit red code, a failed broader suite, temporary mutants, sensitivity probes, or unrelated user changes. If Git is unavailable or the commit fails, preserve the green worktree, report the blocker, and do not pretend the checkpoint was committed.
+If Git is unavailable or the commit fails, preserve the green worktree, report the blocker, and do not pretend the checkpoint was committed.
 
 ## Design While Green
 
@@ -254,6 +243,6 @@ Return to the appropriate phase for a concrete gap. Do not repeat open-ended des
 
 ## Infrastructure and Independent Review
 
-Avoid interaction-based mocking. Use [Nullable infrastructure wrappers](references/nullables.md) when external I/O requires a controllable seam, unless repository architecture or the user requires another behavioral testing technique.
+Avoid interaction-based mocking. Use [Nullable infrastructure wrappers](../references/nullable-infrastructure.md) when external I/O requires a controllable seam, unless repository architecture or the user requires another behavioral testing technique.
 
 Keep one agent responsible for the normal short loop. Consider independent review only when the user requests it, behavior is high-risk, requirements remain ambiguous, minimization cannot resolve a choice, or repeated cycles fail to stabilize. Treat review as deliberate escalation, not a substitute for executable evidence.
