@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentence Rhythm"
+  short_description: "Edit for varied rhythm and connected prose"
+  default_prompt: "Use $sentence-rhythm to edit this draft for clear sentences, varied rhythm, and coherent paragraphs while preserving my meaning and voice."

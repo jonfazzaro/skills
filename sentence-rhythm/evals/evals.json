@@ -1,0 +1,44 @@
+{
+  "skill_name": "sentence-rhythm",
+  "evals": [
+    {
+      "id": 1,
+      "name": "dense-explanation",
+      "prompt": "Edit this draft using the sentence-level techniques discussed in Several Short Sentences About Writing. I want deliberate rhythm and readable passages, with my meaning intact. Return only the revised draft.\n\nAlthough the pilot appeared to reduce the amount of time that reviewers spent on each application, which was one of the reasons that we had introduced the new form in the first place, the six reviewers who participated also received help from an analyst during the pilot, so it would be premature to attribute the whole improvement to the form, especially given that the applications in the pilot were smaller than the ones the team usually receives. The median review time fell from 18 minutes to 11 minutes, but we did not measure the time the analyst spent helping reviewers.\n\nIt is important to note that the practical implication of these findings is that we should continue testing the form before making a decision about whether to use it across the department, and the next test should include larger applications as well as a separate record of the analyst's time. We have enough staff for a two-week test in January. If the analyst is unavailable, we will postpone it.",
+      "expected_output": "When editing a dense explanation, given uncertain evidence, clarifies the sentences while preserving the evidence, qualifications, and practical decision in connected paragraphs.",
+      "files": [],
+      "assertions": [
+        "Preserves six reviewers and a median review-time change from 18 to 11 minutes.",
+        "Preserves both confounding factors (analyst help and smaller applications), the unmeasured analyst time, and uncertainty about attributing the improvement to the form.",
+        "Preserves testing larger applications and separately tracking analyst time, the two-week January test, and postponement if the analyst is unavailable.",
+        "Returns connected prose containing multi-sentence paragraphs, without turning the draft into one sentence per paragraph or adding an unsupported conclusion."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "fragmented-workplace-draft",
+      "prompt": "Edit this draft using the sentence-level techniques discussed in Several Short Sentences About Writing. I want deliberate rhythm and readable passages, with my meaning intact. Return only the revised draft.\n\nWe thought the meeting was the problem.\n\nIt wasn't.\n\nThe problem? Ownership.\n\nEvery Tuesday, nine of us spent forty minutes reviewing requests.\n\nNine people. Forty minutes. No decisions.\n\nLast month we tried something small.\n\nWe gave each request a named reviewer before the meeting. We kept the meeting for requests that needed discussion.\n\nThe first two meetings lasted twenty minutes each. Two requests still left without a decision because the customer had not sent the documents we needed.\n\nThat changed everything.\n\nIt wasn't about meeting less. It was about caring more.\n\nWe will try the same arrangement for another month before deciding whether to keep it.",
+      "expected_output": "When editing a fragmented workplace draft, given inflated claims and substantive observations, restores connected development and proportion without turning the observations into slogans.",
+      "files": [],
+      "assertions": [
+        "Preserves nine participants, Tuesday meetings lasting forty minutes, and the first two revised meetings lasting twenty minutes each.",
+        "Preserves assigning a named reviewer before the meeting and reserving the meeting for requests needing discussion.",
+        "Preserves two undecided requests caused by missing customer documents and another month of trial before a permanent decision.",
+        "Restores connected multi-sentence paragraphs and removes the unsupported transformation and caring-more moral, without adding a replacement slogan."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "restrained-personal-passage",
+      "prompt": "Give this a light rhythm edit using the techniques discussed in Several Short Sentences About Writing. Keep the quiet tone and the details. Return only the revised draft.\n\nAt the ferry office, my father emptied his coat pockets onto the counter: a folded timetable, two peppermints, a screw he had meant to take to the hardware shop, and the ticket he had been looking for. The clerk waited. He put everything back except the screw, which he left beside the card reader. I picked it up as we went out.\n\nBy then the rain had stopped, but water was still dripping from the edge of the shelter. My father stood just inside it, watching the cars come off the ferry. He asked whether we had time for tea. We had twelve minutes. I said we probably did.",
+      "expected_output": "When lightly editing a personal passage, given a successful longer sentence and restrained detail, preserves the voice, meaningful objects, uncertainty, and natural paragraph structure without inventing emotional interpretation.",
+      "files": [],
+      "assertions": [
+        "Preserves the timetable, two peppermints, hardware-shop screw, sought ticket, waiting clerk, screw beside the card reader, and narrator retrieving it.",
+        "Preserves stopped rain with ongoing drips, the father's location inside the shelter, cars leaving the ferry, twelve minutes, and the narrator's qualified answer about tea.",
+        "Keeps the opening inventory as a sustained sentence rather than splitting each object into a separate sentence.",
+        "Keeps connected paragraphs and restrained narration without adding illness, grief, nostalgia, motives, or a lesson."
+      ]
+    }
+  ]
+}
