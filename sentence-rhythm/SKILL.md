@@ -3,6 +3,12 @@ name: sentence-rhythm
 description: Edit a draft for sentence rhythm, clarity, and coherent passages using techniques discussed in Verlyn Klinkenborg's Several Short Sentences About Writing. Use when asked for this book's editing approach, deliberate variation in sentence length, or help with choppy, monotonous, or overburdened prose. Preserve the writer's voice and meaning; avoid theatrical one-sentence paragraphs. Do not apply substantive rewrites to proofreading-only requests.
 ---
 
+## Context marker
+
+🎼
+
+When this skill activates, begin the first commentary update with 🎼 and a brief “Using sentence-rhythm …” announcement. Stack it with any required global marker. Do not repeat it in later updates or place it in the edited draft.
+
 # Sentence rhythm
 
 Edit the supplied draft so its sentences are clear, varied, and satisfying to read together. Apply the book's teachable techniques while retaining the draft writer's own voice. This skill prioritizes rhythm within sustained prose and preserves the substance of the draft.
